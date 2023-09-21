@@ -1,0 +1,5 @@
+if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi/validators/error_indication_validator_test[1]_tests.cmake")
+  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi/validators/error_indication_validator_test[1]_tests.cmake")
+else()
+  add_test(error_indication_validator_test_NOT_BUILT error_indication_validator_test_NOT_BUILT)
+endif()

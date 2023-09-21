@@ -51,6 +51,9 @@ std::unique_ptr<e2_message_notifier> e2_gateway_remote_connector::handle_connect
   e2ap_adapter->connect_gateway(std::move(sctp_du_e2_gateway));
   logger.info("E2 connection established");
 
+  // AS_DEBUG: This is where you would setup the E2AP to use the gRPC interface to exchange
+  // information with the xApp. The same interface will be used to communicate with the xApp.
+
   return e2ap_adapter;
 }
 

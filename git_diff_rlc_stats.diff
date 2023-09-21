@@ -1,0 +1,89 @@
+diff --git a/lib/scheduler/logging/scheduler_metric_handler.cpp b/lib/scheduler/logging/scheduler_metric_handler.cpp
+index 4b9c3c4bf..5c696bb51 100644
+--- a/lib/scheduler/logging/scheduler_metric_handler.cpp
++++ b/lib/scheduler/logging/scheduler_metric_handler.cpp
+@@ -145,6 +145,17 @@ void scheduler_metrics_handler::handle_dl_buffer_state_indication(const dl_buffe
+   }
+ }
+ 
++void scheduler_metrics_handler::handle_rlc_buffer_status(const rlc_metrics& metrics)
++{
++  if (ues.contains(metrics.ue_index)) {
++    auto& u = ues[metrics.ue_index];
++
++    // Store last DL buffer state.
++    u.data.pkt_drop_rate = ((1.0 * (metrics.tx.num_dropped_sdus + metrics.tx.num_discarded_sdus + metrics.tx.num_discard_failures)) / metrics.tx.num_sdus) * 100;
++    u.data.pkt_volume    = (metrics.tx.num_dropped_sdus * 8 / 1000);
++  }
++}
++
+ void scheduler_metrics_handler::report_metrics()
+ {
+   static_vector<scheduler_ue_metrics, MAX_NOF_DU_UES> metrics_report;
+diff --git a/lib/scheduler/logging/scheduler_metrics_handler.h b/lib/scheduler/logging/scheduler_metrics_handler.h
+index 78731eb46..41904eedb 100644
+--- a/lib/scheduler/logging/scheduler_metrics_handler.h
++++ b/lib/scheduler/logging/scheduler_metrics_handler.h
+@@ -27,6 +27,7 @@
+ #include "srsran/scheduler/scheduler_feedback_handler.h"
+ #include "srsran/scheduler/scheduler_metrics.h"
+ #include "srsran/scheduler/scheduler_slot_handler.h"
++#include "srsran/rlc/rlc_metrics.h"
+ #include <unordered_map>
+ 
+ namespace srsran {
+@@ -71,6 +72,9 @@ public:
+   /// \brief Handle DL Buffer Status indication.
+   void handle_dl_buffer_state_indication(const dl_buffer_state_indication_message& dl_bs);
+ 
++  /// \brief Handle RLC buffer status
++  void handle_rlc_buffer_status(const rlc_metrics& metrics);
++
+   /// \brief Handle results stored in the scheduler result and push new entry.
+   void push_result(slot_point sl_tx, const sched_result& slot_result);
+ 
+@@ -95,6 +99,8 @@ private:
+       double   sum_pucch_snrs        = 0;
+       unsigned nof_pucch_snr_reports = 0;
+       unsigned nof_pusch_snr_reports = 0;
++      double pkt_drop_rate = 0;
++      double pkt_volume = 0;
+     };
+     pci_t                                  pci;
+     du_ue_index_t                          ue_index;
+diff --git a/lib/scheduler/ue_scheduling/ue_event_manager.cpp b/lib/scheduler/ue_scheduling/ue_event_manager.cpp
+index 2ae2f053a..6ba0dd773 100644
+--- a/lib/scheduler/ue_scheduling/ue_event_manager.cpp
++++ b/lib/scheduler/ue_scheduling/ue_event_manager.cpp
+@@ -352,6 +352,19 @@ void ue_event_manager::handle_dl_mac_ce_indication(const dl_mac_ce_indication& c
+   });
+ }
+ 
++void ue_event_manager::handle_rlc_buffer_status(const rlc_metrics& metrics)
++{
++  common_events.emplace(metrics.ue_index, [this, metrics]() {
++    if (not ue_db.contains(metrics.ue_index)) {
++      log_invalid_ue_index(metrics.ue_index, "DL Buffer State");
++      return;
++    }
++    ue& u = ue_db[metrics.ue_index];
++
++    metrics_handler.handle_rlc_buffer_status(metrics);
++  });
++}
++
+ void ue_event_manager::handle_dl_buffer_state_indication(const dl_buffer_state_indication_message& bs)
+ {
+   common_events.emplace(bs.ue_index, [this, bs]() {
+diff --git a/lib/scheduler/ue_scheduling/ue_event_manager.h b/lib/scheduler/ue_scheduling/ue_event_manager.h
+index b7776fe9f..1e6d4a6bf 100644
+--- a/lib/scheduler/ue_scheduling/ue_event_manager.h
++++ b/lib/scheduler/ue_scheduling/ue_event_manager.h
+@@ -65,6 +65,7 @@ public:
+ 
+   /// Scheduler DL buffer state indication handler interface.
+   void handle_dl_buffer_state_indication(const dl_buffer_state_indication_message& bs) override;
++  void handle_rlc_buffer_status(const rlc_metrics& metrics);
+ 
+   /// Process events for a given slot and cell index.
+   void run(slot_point sl, du_cell_index_t cell_index);

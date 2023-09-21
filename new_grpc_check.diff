@@ -1,0 +1,174 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9acc9600f..eb1c0bbc4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -183,9 +183,12 @@ endif()
+ # gRPC
+ find_package(Protobuf REQUIRED)
+ find_package(gRPC REQUIRED VERSION 1.58.1)
++find_package(gRPC CONFIG REQUIRED)
+ if (gRPC_FOUND)
+     message(STATUS "Found gRPC")
+     set(SEC_LIBRARIES gRPC::grpc++)
++    set(SEC_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/lib/grpc/e2_and_o1.grpc.pb.cc")
++    set(SEC_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/lib/grpc/e2_and_o1.pb.cc")
+ else(gRPC_FOUND)
+     message(FATAL_ERROR "Could not find gRPC")
+ endif(gRPC_FOUND)
+diff --git a/apps/gnb/adapters/e2_gateway_remote_connector.cpp b/apps/gnb/adapters/e2_gateway_remote_connector.cpp
+index 848a74a03..50eaebe8a 100644
+--- a/apps/gnb/adapters/e2_gateway_remote_connector.cpp
++++ b/apps/gnb/adapters/e2_gateway_remote_connector.cpp
+@@ -51,6 +51,9 @@ std::unique_ptr<e2_message_notifier> e2_gateway_remote_connector::handle_connect
+   e2ap_adapter->connect_gateway(std::move(sctp_du_e2_gateway));
+   logger.info("E2 connection established");
+ 
++  // AS_DEBUG: This is where you would setup the E2AP to use the gRPC interface to exchange
++  // information with the xApp. The same interface will be used to communicate with the xApp.
++
+   return e2ap_adapter;
+ }
+ 
+diff --git a/apps/gnb/gnb.cpp b/apps/gnb/gnb.cpp
+index b2c800720..32f8f55ff 100644
+--- a/apps/gnb/gnb.cpp
++++ b/apps/gnb/gnb.cpp
+@@ -67,7 +67,6 @@
+ #include "apps/gnb/adapters/e2_gateway_remote_connector.h"
+ #include "gnb_e2_metric_connector_manager.h"
+ #include "srsran/support/sysinfo.h"
+-
+ #include <atomic>
+ 
+ #ifdef DPDK_FOUND
+diff --git a/apps/gnb/gnb_du_factory.cpp b/apps/gnb/gnb_du_factory.cpp
+index 3696806ef..bd87b2540 100644
+--- a/apps/gnb/gnb_du_factory.cpp
++++ b/apps/gnb/gnb_du_factory.cpp
+@@ -156,6 +156,8 @@ std::vector<std::unique_ptr<du>> srsran::make_gnb_dus(const gnb_appconfig&
+     du_hi_cfg.mac_cfg                        = generate_mac_expert_config(gnb_cfg);
+     du_hi_cfg.sched_ue_metrics_notifier      = metrics_hub.get_scheduler_ue_metrics_source("DU " + std::to_string(i));
+     du_hi_cfg.sched_cfg                      = generate_scheduler_expert_config(gnb_cfg);
++
++
+     if (gnb_cfg.e2_cfg.enable_du_e2) {
+       du_hi_cfg.e2_client          = &e2_client_handler;
+       du_hi_cfg.e2ap_config        = generate_e2_config(gnb_cfg);
+diff --git a/lib/du_manager/du_manager_impl.cpp b/lib/du_manager/du_manager_impl.cpp
+index c18b1ab0f..e299a7121 100644
+--- a/lib/du_manager/du_manager_impl.cpp
++++ b/lib/du_manager/du_manager_impl.cpp
+@@ -26,6 +26,10 @@
+ #include "procedures/initial_du_setup_procedure.h"
+ #include <condition_variable>
+ #include <future>
++#include <grpc++/grpc++.h>
++#include "../../lib/grpc/e2_and_o1.grpc.pb.h"
++#include "../../lib/grpc/e2_and_o1.pb.h"
++
+ 
+ using namespace srsran;
+ using namespace srs_du;
+@@ -77,6 +81,15 @@ void du_manager_impl::start()
+   // Block waiting for DU setup to complete.
+   fut.wait();
+ 
++  // Enable gRPC client for the server
++  grpc::ServerBuilder builder;
++  std::string server_address("0.0.0.0:50051");
++  builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
++  srsran::srs_du::MyServiceImpl service_impl(this);
++  builder.RegisterService(&service_impl);
++  server_ = builder.BuildAndStart();
++  std::cout << "Server listening on " << server_address << std::endl;
++
+   logger.info("DU manager started successfully.");
+ }
+ 
+@@ -87,6 +100,11 @@ void du_manager_impl::stop()
+     return;
+   }
+ 
++  if (server_) {
++    server_->Shutdown(); // Shutdown the gRPC server
++    server_->Wait();     // Wait for the server to complete processing
++  }
++
+   eager_async_task<void> main_loop;
+   std::atomic<bool>      main_loop_stopped{false};
+ 
+diff --git a/lib/du_manager/du_manager_impl.h b/lib/du_manager/du_manager_impl.h
+index 3d62550f0..37c293d9a 100644
+--- a/lib/du_manager/du_manager_impl.h
++++ b/lib/du_manager/du_manager_impl.h
+@@ -27,10 +27,62 @@
+ #include "ran_resource_management/du_ran_resource_manager_impl.h"
+ #include "srsran/du_manager/du_manager.h"
+ #include "srsran/du_manager/du_manager_params.h"
++#include <grpc++/grpc++.h>
++#include "../../lib/grpc/e2_and_o1.grpc.pb.h"
++#include "../../lib/grpc/e2_and_o1.pb.h"
++
++using grpc::Server;
++using grpc::ServerBuilder;
++using grpc::ServerContext;
++using grpc::Status;
++using mypackage::MyService;
++using mypackage::StreamRequest;
++using mypackage::StreamResponse;
++using mypackage::MatrixRequest;
++using mypackage::MatrixResponse;
++using mypackage::UeMaxPrbAllocation;
+ 
+ namespace srsran {
+ namespace srs_du {
+ 
++class MyServiceImpl final : public MyService::Service {
++public:
++    MyServiceImpl(du_manager_impl* du_ptr) : du_ptr_(du_ptr) {}
++
++    Status ServerToClientStream(ServerContext* context, const StreamRequest* request, grpc::ServerWriter<StreamResponse>* writer) override {
++        // Implement your streaming logic here.
++        // You can use the 'writer' to send responses to the client.
++        return Status::OK;
++    }
++
++    Status ClientToServer(ServerContext* context, const MatrixRequest* request, MatrixResponse* response) override {
++        // Implement your RPC logic here.
++        // Access the request parameters from 'request' and fill 'response'.
++        const google::protobuf::RepeatedPtrField<UeMaxPrbAllocation>& ue_allocations = request->ue_max_prb_allocations();
++
++        // Iterate through the list of UE allocations
++        for (const UeMaxPrbAllocation& allocation : ue_allocations) {
++            uint32_t ue_index = allocation.ue_index();
++            uint32_t max_prb_allocation = allocation.max_prb_allocation();
++
++            srsran::ric_control_config config;
++            config.ue_id = ue_index;
++            config.min_prb_alloc = 1;
++            config.max_prb_alloc = max_prb_allocation;
++
++            if (du_ptr_) {
++              du_ptr_->configure_ue_mac_scheduler(config);
++            }
++        }
++
++        return Status::OK;
++    }
++
++private:
++    // Member variable to store the pointer to the du object.
++    du_manager_impl* du_ptr_;
++};
++
+ class du_manager_impl final : public du_manager_interface
+ {
+ public:
+@@ -71,6 +123,7 @@ private:
+   // DU manager configuration that will be visible to all running procedures
+   du_manager_params     params;
+   srslog::basic_logger& logger;
++  std::unique_ptr<grpc::Server> server_; // Store the server instance
+ 
+   // Components
+   du_cell_manager              cell_mng;

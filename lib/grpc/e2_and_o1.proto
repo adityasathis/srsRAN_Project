@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package mypackage;
+
+service MyService {
+    // RPC #1: Server periodically sends a message to the client.
+    rpc ServerToClientStream (StreamRequest) returns (stream StreamResponse);
+
+    // RPC #2: Client sends a 2x2 array to the server.
+    rpc ClientToServer (MatrixRequest) returns (MatrixResponse);
+}
+
+message StreamRequest {
+    // You can define any fields you need here for the request.
+    // For example, if you want to specify the interval of messages,
+    // you can add a field like "int32 interval_seconds = 1;"
+}
+
+message StreamResponse {
+    // Define the fields you want to send from the server to the client.
+    // In your case, you mentioned three variables.
+    int32 ue_index = 1;
+    double pkt_drop = 2;
+    int32 pkt_volume = 3;
+}
+
+message UeMaxPrbAllocation {
+  int32 ue_index = 1;
+  double max_prb_allocation = 2;
+}
+
+message MatrixRequest {
+    // Define the 2x2 array or any other data you want the client to send.
+    repeated UeMaxPrbAllocation ue_max_prb_allocations = 1;
+}
+
+message MatrixResponse {
+    // Define any response message if needed for the second RPC.
+}

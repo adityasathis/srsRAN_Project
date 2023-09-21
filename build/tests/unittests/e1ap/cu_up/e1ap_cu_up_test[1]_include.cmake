@@ -1,0 +1,5 @@
+if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/e1ap/cu_up/e1ap_cu_up_test[1]_tests.cmake")
+  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/e1ap/cu_up/e1ap_cu_up_test[1]_tests.cmake")
+else()
+  add_test(e1ap_cu_up_test_NOT_BUILT e1ap_cu_up_test_NOT_BUILT)
+endif()

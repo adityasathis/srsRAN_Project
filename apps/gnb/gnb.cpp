@@ -67,7 +67,6 @@
 #include "apps/gnb/adapters/e2_gateway_remote_connector.h"
 #include "gnb_e2_metric_connector_manager.h"
 #include "srsran/support/sysinfo.h"
-
 #include <atomic>
 
 #ifdef DPDK_FOUND

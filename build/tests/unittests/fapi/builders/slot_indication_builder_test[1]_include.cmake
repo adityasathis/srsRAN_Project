@@ -1,0 +1,5 @@
+if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi/builders/slot_indication_builder_test[1]_tests.cmake")
+  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi/builders/slot_indication_builder_test[1]_tests.cmake")
+else()
+  add_test(slot_indication_builder_test_NOT_BUILT slot_indication_builder_test_NOT_BUILT)
+endif()

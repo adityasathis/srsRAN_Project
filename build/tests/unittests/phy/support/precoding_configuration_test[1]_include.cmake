@@ -1,0 +1,5 @@
+if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/phy/support/precoding_configuration_test[1]_tests.cmake")
+  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/phy/support/precoding_configuration_test[1]_tests.cmake")
+else()
+  add_test(precoding_configuration_test_NOT_BUILT precoding_configuration_test_NOT_BUILT)
+endif()

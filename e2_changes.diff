@@ -1,0 +1,82 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9acc9600f..eb1c0bbc4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -183,9 +183,12 @@ endif()
+ # gRPC
+ find_package(Protobuf REQUIRED)
+ find_package(gRPC REQUIRED VERSION 1.58.1)
++find_package(gRPC CONFIG REQUIRED)
+ if (gRPC_FOUND)
+     message(STATUS "Found gRPC")
+     set(SEC_LIBRARIES gRPC::grpc++)
++    set(SEC_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/lib/grpc/e2_and_o1.grpc.pb.cc")
++    set(SEC_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/lib/grpc/e2_and_o1.pb.cc")
+ else(gRPC_FOUND)
+     message(FATAL_ERROR "Could not find gRPC")
+ endif(gRPC_FOUND)
+diff --git a/apps/gnb/gnb.cpp b/apps/gnb/gnb.cpp
+index b2c800720..9c32285b6 100644
+--- a/apps/gnb/gnb.cpp
++++ b/apps/gnb/gnb.cpp
+@@ -67,6 +67,9 @@
+ #include "apps/gnb/adapters/e2_gateway_remote_connector.h"
+ #include "gnb_e2_metric_connector_manager.h"
+ #include "srsran/support/sysinfo.h"
++#include <grpc++/grpc++.h>
++#include "../../lib/grpc/e2_and_o1.grpc.pb.h"
++#include "../../lib/grpc/e2_and_o1.pb.h"
+ 
+ #include <atomic>
+ 
+@@ -485,6 +488,15 @@ int main(int argc, char** argv)
+   ru_dl_rg_adapt.connect(ru_object->get_downlink_plane_handler());
+   ru_ul_request_adapt.connect(ru_object->get_uplink_plane_handler());
+ 
++   // Enable gRPC client for the server
++    grpc::ServerBuilder builder;
++    std::string server_address("0.0.0.0:50051");
++    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
++    MyServiceImpl service_impl;
++    builder.RegisterService(&service_impl);
++    std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
++    std::cout << "Server listening on " << server_address << std::endl;
++
+   // Instantiate one DU per cell.
+   std::vector<std::unique_ptr<du>> du_inst = make_gnb_dus(gnb_cfg,
+                                                           du_cells,
+@@ -539,6 +551,9 @@ int main(int argc, char** argv)
+     du->stop();
+   }
+ 
++  server->Shutdown();
++  server->Wait();
++
+   // Stop CU-UP activity.
+   cu_up_obj->stop();
+ 
+diff --git a/apps/gnb/gnb_du_factory.cpp b/apps/gnb/gnb_du_factory.cpp
+index 3696806ef..b0a084f4b 100644
+--- a/apps/gnb/gnb_du_factory.cpp
++++ b/apps/gnb/gnb_du_factory.cpp
+@@ -27,6 +27,8 @@
+ #include "srsran/du/du_factory.h"
+ #include "srsran/e2/e2_connection_client.h"
+ #include "srsran/f1ap/du/f1c_connection_client.h"
++#include "../../lib/grpc/e2_and_o1.grpc.pb.h"
++#include "../../lib/grpc/e2_and_o1.pb.h"
+ 
+ using namespace srsran;
+ 
+@@ -156,6 +158,11 @@ std::vector<std::unique_ptr<du>> srsran::make_gnb_dus(const gnb_appconfig&
+     du_hi_cfg.mac_cfg                        = generate_mac_expert_config(gnb_cfg);
+     du_hi_cfg.sched_ue_metrics_notifier      = metrics_hub.get_scheduler_ue_metrics_source("DU " + std::to_string(i));
+     du_hi_cfg.sched_cfg                      = generate_scheduler_expert_config(gnb_cfg);
++
++    // Enable gRPC client for the server
++    grpc::ServerBuilder builder;
++
++
+     if (gnb_cfg.e2_cfg.enable_du_e2) {
+       du_hi_cfg.e2_client          = &e2_client_handler;
+       du_hi_cfg.e2ap_config        = generate_e2_config(gnb_cfg);

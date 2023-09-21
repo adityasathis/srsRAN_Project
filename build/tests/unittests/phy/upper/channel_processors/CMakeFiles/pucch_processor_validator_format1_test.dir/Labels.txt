@@ -1,0 +1,4 @@
+# Directory labels
+ phy
+# Source files and their labels
+/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/phy/upper/channel_processors/pucch_processor_validator_format1_test.cpp

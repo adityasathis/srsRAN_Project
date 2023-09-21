@@ -1,0 +1,216 @@
+diff --git a/apps/gnb/gnb.cpp b/apps/gnb/gnb.cpp
+index b2c800720..2a48b869f 100644
+--- a/apps/gnb/gnb.cpp
++++ b/apps/gnb/gnb.cpp
+@@ -410,6 +410,18 @@ int main(int argc, char** argv)
+     gnb_logger.info("Bypassing AMF connection");
+   }
+ 
++  // E2-gRPC configuration
++  srsran::grpc_network_gateway_config e2_grpc_nw_config = generate_e2_grpc_nw_config(gnb_cfg, E2_DU_PPID);
++
++  // Create E2 gRPC remote connector.
++  e2_grpc_gateway_remote_connector e2_grpc_gw{*epoll_broker, e2_grpc_du_nw_config, *e2_grpc_p};
++
++  // O1 configuration
++  srsran::grpc_network_gateway_config o1_nw_config = generate_o1_nw_config(gnb_cfg, O1_DU_PPID);
++
++  // Create O1 GW remote connector.
++  o1_gateway_remote_connector o1_gw{*epoll_broker, o1_du_nw_config, *o1_p};
++
+   // E2AP configuration.
+   srsran::sctp_network_gateway_config e2_du_nw_config = generate_e2ap_nw_config(gnb_cfg, E2_DU_PPID);
+ 
+diff --git a/apps/gnb/gnb_appconfig.h b/apps/gnb/gnb_appconfig.h
+index 0b7c681a9..8985ec925 100644
+--- a/apps/gnb/gnb_appconfig.h
++++ b/apps/gnb/gnb_appconfig.h
+@@ -538,6 +538,22 @@ struct e2_appconfig {
+   bool        e2sm_rc_enabled        = false;       ///< Whether to enable RC service module
+ };
+ 
++/// E2-gRPC Configuration
++struct e2_grpc_appconfig {
++  bool        enable_du_e2_grpc      = false;       ///< Whether to enable DU E2 gRPC agent
++  std::string ip_addr                = "127.0.0.1"; ///< xApp IP address
++  uint16_t    port                   = 7000;        ///< xApp IP address
++  std::string bind_addr              = "127.0.0.1"; ///< Local IP address to bind for xApp connection
++};
++
++/// O1 Configuration
++struct o1_appconfig {
++  bool enable_du_o1                  = false;       ///< Whether to enable O1 agent to non-RT RIC
++  std::string ip_addr                = "127.0.0.1"; ///< InfluxDB IP address
++  uint16_t    port                   = 7000;        ///< InfluxDB IP address
++  std::string bind_addr              = "127.0.0.1"; ///< Local IP address to bind for InfluxDB connection
++};
++
+ struct cu_cp_neighbor_cell_appconfig_item {
+   uint64_t              nr_cell_id;     ///< Cell id.
+   std::vector<uint64_t> report_cfg_ids; ///< Report config ids
+@@ -925,6 +941,11 @@ struct gnb_appconfig {
+   cu_cp_appconfig cu_cp_cfg;
+   /// \brief E2 configuration.
+   e2_appconfig e2_cfg;
++  /// \brief E2-gRPC configuration.
++  e2_grpc_appconfig e2_grpc_cfg;
++  /// \brief O1 configuration.
++  o1_appconfig o1_cfg;
++
+   /// Radio Unit configuration.
+   variant<ru_sdr_appconfig, ru_ofh_appconfig> ru_cfg = {ru_sdr_appconfig{}};
+   /// \brief Base cell application configuration.
+diff --git a/apps/gnb/gnb_appconfig_cli11_schema.cpp b/apps/gnb/gnb_appconfig_cli11_schema.cpp
+index 062d1468d..67b0f889d 100644
+--- a/apps/gnb/gnb_appconfig_cli11_schema.cpp
++++ b/apps/gnb/gnb_appconfig_cli11_schema.cpp
+@@ -212,6 +212,23 @@ static void configure_cli11_e2_args(CLI::App& app, e2_appconfig& e2_params)
+   app.add_option("--e2sm_rc_enabled", e2_params.e2sm_rc_enabled, "Enable RC service module");
+ }
+ 
++static void configure_cli11_e2_grpc_args(CLI::App& app, e2_grpc_appconfig& e2_grpc_params)
++{
++  app.add_option("--enable_du_e2_grpc", e2_grpc_params.enable_du_e2_grpc, "Enable DU E2 gRPC agent");
++  app.add_option("--addr", e2_grpc_params.ip_addr, "xApp IP address");
++  app.add_option("--port", e2_grpc_params.port, "xApp port")->capture_default_str()->check(CLI::Range(20000, 40000));
++  app.add_option("--bind_addr", e2_grpc_params.bind_addr, "Local IP address to bind for xApp connection")->check(CLI::ValidIPV4);
++}
++
++static void configure_cli11_o1_args(CLI::App& app, o1_appconfig& o1_params)
++{
++  app.add_option("--enable_o1", o1_params.enable_du_o1, "Enable O1 agent");
++  app.add_option("--addr", o1_params.ip_addr, "O1 IP address");
++  app.add_option("--port", o1_params.port, "O1 port")->capture_default_str()->check(CLI::Range(20000, 40000));
++  app.add_option("--bind_addr", o1_params.bind_addr, "Local IP address to bind for O1 connection")->check(CLI::ValidIPV4);
++}
++
++
+ static void configure_cli11_ncell_args(CLI::App& app, cu_cp_neighbor_cell_appconfig_item& config)
+ {
+   app.add_option("--nr_cell_id", config.nr_cell_id, "Neighbor cell id");
+@@ -1686,6 +1703,14 @@ void srsran::configure_cli11_with_gnb_appconfig_schema(CLI::App& app, gnb_appcon
+   CLI::App* e2_subcmd = app.add_subcommand("e2", "E2 parameters")->configurable();
+   configure_cli11_e2_args(*e2_subcmd, gnb_cfg.e2_cfg);
+ 
++  // E2 (gRPC) section.
++  CLI::App* e2_grpc_subcmd = app.add_subcommand("e2_grpc", "E2-gRPC parameters")->configurable();
++  configure_cli11_e2_grpc_args(*e2_grpc_subcmd, gnb_cfg.e2_grpc_cfg);
++
++  // O1 section
++  CLI::App* o1_subcmd = app.add_subcommand("o1", "O1 parameters")->configurable();
++  configure_cli11_o1_args(*o1_subcmd, gnb_cfg.o1_cfg);
++
+   // CU-CP section
+   CLI::App* cu_cp_subcmd = app.add_subcommand("cu_cp", "CU-CP parameters")->configurable();
+   configure_cli11_cu_cp_args(*cu_cp_subcmd, gnb_cfg.cu_cp_cfg);
+diff --git a/apps/gnb/gnb_appconfig_translators.cpp b/apps/gnb/gnb_appconfig_translators.cpp
+index 4474f1110..9c4b53cac 100644
+--- a/apps/gnb/gnb_appconfig_translators.cpp
++++ b/apps/gnb/gnb_appconfig_translators.cpp
+@@ -1328,6 +1328,26 @@ scheduler_expert_config srsran::generate_scheduler_expert_config(const gnb_appco
+   return out_cfg;
+ }
+ 
++srsran::grpc_network_gateway_config srsran::generate_e2_grpc_nw_config(const gnb_appconfig& config, int ppid)
++{
++  srsran::grpc_network_gateway_config out_cfg;
++  out_cfg.connect_address    = config.e2_grpc_cfg.ip_addr;
++  out_cfg.connect_port       = config.e2_grpc_cfg.port;
++  out_cfg.bind_address       = config.e2_grpc_cfg.bind_addr;
++
++  return out_cfg;
++}
++
++srsran::grpc_network_gateway_config srsran::generate_e2_grpc_nw_config(const gnb_appconfig& config, int ppid)
++{
++  srsran::grpc_network_gateway_config out_cfg;
++  out_cfg.connect_address    = config.o1_cfg.ip_addr;
++  out_cfg.connect_port       = config.o1_cfg.port;
++  out_cfg.bind_address       = config.o1_cfg.bind_addr;
++
++  return out_cfg;
++}
++
+ srsran::sctp_network_gateway_config srsran::generate_e2ap_nw_config(const gnb_appconfig& config, int ppid)
+ {
+   srsran::sctp_network_gateway_config out_cfg;
+diff --git a/apps/gnb/gnb_appconfig_translators.h b/apps/gnb/gnb_appconfig_translators.h
+index d94975a98..eb2d9fa1c 100644
+--- a/apps/gnb/gnb_appconfig_translators.h
++++ b/apps/gnb/gnb_appconfig_translators.h
+@@ -76,6 +76,12 @@ ru_configuration generate_ru_config(const gnb_appconfig& config, span<const du_c
+ /// Converts and returns the given gnb application configuration to a E2AP Network Gateway configuration.
+ srsran::sctp_network_gateway_config generate_e2ap_nw_config(const gnb_appconfig& config, int ppid);
+ 
++/// Converts and returns the given gnb application configuration to a E2AP Network Gateway configuration.
++srsran::grpc_network_gateway_config generate_e2_grpc_nw_config(const gnb_appconfig& config, int ppid);
++
++/// Converts and returns the given gnb application configuration to a E2AP Network Gateway configuration.
++srsran::grpc_network_gateway_config generate_o1_nw_config(const gnb_appconfig& config, int ppid);
++
+ /// Converts and returns the given gnb application configuration to a E2 configuration.
+ e2ap_configuration generate_e2_config(const gnb_appconfig& config);
+ 
+diff --git a/include/srsran/gateways/sctp_network_gateway.h b/include/srsran/gateways/sctp_network_gateway.h
+index 8c5a91aa1..3a915c79f 100644
+--- a/include/srsran/gateways/sctp_network_gateway.h
++++ b/include/srsran/gateways/sctp_network_gateway.h
+@@ -32,6 +32,14 @@ constexpr uint16_t NGAP_PPID  = 60; // NGAP PPID, see TS 38.412, section 7.
+ constexpr uint16_t E2_CP_PPID = 70; // E2-CP PPID assigned by IANA
+ constexpr uint16_t E2_UP_PPID = 71; // E2-UP PPID assigned by IANA
+ constexpr uint16_t E2_DU_PPID = 72; // E2-DU PPID assigned by IANA
++constexpr uint16_t O1_DU_PPID = 73; // O1 PPID assigned by Aditya
++
++/// \brief Configuration for gRPC network gateway
++struct grpc_network_gateway_config : common_network_gateway_config {
++  std::string connect_address;
++  int         connect_port = 0;
++  int ppid = 0;
++};
+ 
+ /// \brief Configuration for SCTP network gateway
+ struct sctp_network_gateway_config : common_network_gateway_config {
+diff --git a/include/srsran/scheduler/config/scheduler_expert_config.h b/include/srsran/scheduler/config/scheduler_expert_config.h
+index 4a92aa0d7..db0e08193 100644
+--- a/include/srsran/scheduler/config/scheduler_expert_config.h
++++ b/include/srsran/scheduler/config/scheduler_expert_config.h
+@@ -55,7 +55,7 @@ struct scheduler_ue_expert_config {
+   /// Enable multiplexing of CSI-RS and PDSCH.
+   bool enable_csi_rs_pdsch_multiplexing;
+   /// Set boundaries, in number of RBs, for UE PDSCH grants.
+-  interval<unsigned> pdsch_nof_rbs{1, MAX_NOF_PRBS};
++  interval<unsigned> pdsch_nof_rbs{1, 10};
+   /// Measurements periodicity in nof. slots over which the new Timing Advance Command is computed.
+   unsigned ta_measurement_slot_period;
+   /// Timing Advance Command (T_A) offset threshold above which Timing Advance Command is triggered. Possible valid
+diff --git a/lib/rlc/rlc_base_entity.h b/lib/rlc/rlc_base_entity.h
+index d6c3066cd..74ea66e4b 100644
+--- a/lib/rlc/rlc_base_entity.h
++++ b/lib/rlc/rlc_base_entity.h
+@@ -101,11 +101,12 @@ private:
+       rlc_metrics_notif->report_metrics(m);
+     }
+     if (m.tx.mode == rlc_mode::am) {
+-      logger.log_info("TX metrics period={}ms num_sdus={} sdu_rate={}kbps, dropped_sdus={} discarded_sdus={} "
++      logger.log_info("TX metrics period={}ms num_sdus={} sdu_bytes={} sdu_rate={}kbps, dropped_sdus={} discarded_sdus={} "
+                       "num_pdus={} pdu_rate={}kbps num_retx={} "
+                       "retx_rate={}kbps ctrl_pdus={} ctrl_rate={}kbps",
+                       metrics_period.count(),
+                       m.tx.num_sdus,
++                      m.tx.num_sdu_bytes,
+                       (double)m.tx.num_sdu_bytes * 8 / (double)metrics_period.count(),
+                       m.tx.num_dropped_sdus,
+                       m.tx.num_discarded_sdus,
+diff --git a/lib/rlc/rlc_sdu_queue.h b/lib/rlc/rlc_sdu_queue.h
+index 9aaf2c37b..20873e480 100644
+--- a/lib/rlc/rlc_sdu_queue.h
++++ b/lib/rlc/rlc_sdu_queue.h
+@@ -37,7 +37,7 @@ namespace srsran {
+ class rlc_sdu_queue
+ {
+ public:
+-  explicit rlc_sdu_queue(uint16_t capacity_ = 1024) :
++  explicit rlc_sdu_queue(uint16_t capacity_ = 256) :
+     capacity(capacity_), queue(capacity_, push_callback(unread_bytes, n_sdus), pop_callback(unread_bytes, n_sdus))
+   {
+   }

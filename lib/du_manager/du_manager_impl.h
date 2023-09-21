@@ -27,9 +27,61 @@
 #include "ran_resource_management/du_ran_resource_manager_impl.h"
 #include "srsran/du_manager/du_manager.h"
 #include "srsran/du_manager/du_manager_params.h"
+#include <grpc++/grpc++.h>
+#include "../../lib/grpc/e2_and_o1.grpc.pb.h"
+#include "../../lib/grpc/e2_and_o1.pb.h"
+
+using grpc::Server;
+using grpc::ServerBuilder;
+using grpc::ServerContext;
+using grpc::Status;
+using mypackage::MyService;
+using mypackage::StreamRequest;
+using mypackage::StreamResponse;
+using mypackage::MatrixRequest;
+using mypackage::MatrixResponse;
+using mypackage::UeMaxPrbAllocation;
 
 namespace srsran {
 namespace srs_du {
+
+class MyServiceImpl final : public MyService::Service {
+public:
+    MyServiceImpl(du_manager_impl* du_ptr) : du_ptr_(du_ptr) {}
+
+    Status ServerToClientStream(ServerContext* context, const StreamRequest* request, grpc::ServerWriter<StreamResponse>* writer) override {
+        // Implement your streaming logic here.
+        // You can use the 'writer' to send responses to the client.
+        return Status::OK;
+    }
+
+    Status ClientToServer(ServerContext* context, const MatrixRequest* request, MatrixResponse* response) override {
+        // Implement your RPC logic here.
+        // Access the request parameters from 'request' and fill 'response'.
+        const google::protobuf::RepeatedPtrField<UeMaxPrbAllocation>& ue_allocations = request->ue_max_prb_allocations();
+
+        // Iterate through the list of UE allocations
+        for (const UeMaxPrbAllocation& allocation : ue_allocations) {
+            uint32_t ue_index = allocation.ue_index();
+            uint32_t max_prb_allocation = allocation.max_prb_allocation();
+
+            srsran::ric_control_config config;
+            config.ue_id = ue_index;
+            config.min_prb_alloc = 1;
+            config.max_prb_alloc = max_prb_allocation;
+
+            if (du_ptr_) {
+              du_ptr_->configure_ue_mac_scheduler(config);
+            }
+        }
+
+        return Status::OK;
+    }
+
+private:
+    // Member variable to store the pointer to the du object.
+    du_manager_impl* du_ptr_;
+};
 
 class du_manager_impl final : public du_manager_interface
 {
@@ -71,6 +123,7 @@ private:
   // DU manager configuration that will be visible to all running procedures
   du_manager_params     params;
   srslog::basic_logger& logger;
+  std::unique_ptr<grpc::Server> server_; // Store the server instance
 
   // Components
   du_cell_manager              cell_mng;

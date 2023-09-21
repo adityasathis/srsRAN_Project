@@ -156,6 +156,8 @@ std::vector<std::unique_ptr<du>> srsran::make_gnb_dus(const gnb_appconfig&      
     du_hi_cfg.mac_cfg                        = generate_mac_expert_config(gnb_cfg);
     du_hi_cfg.sched_ue_metrics_notifier      = metrics_hub.get_scheduler_ue_metrics_source("DU " + std::to_string(i));
     du_hi_cfg.sched_cfg                      = generate_scheduler_expert_config(gnb_cfg);
+
+
     if (gnb_cfg.e2_cfg.enable_du_e2) {
       du_hi_cfg.e2_client          = &e2_client_handler;
       du_hi_cfg.e2ap_config        = generate_e2_config(gnb_cfg);

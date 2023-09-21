@@ -1,0 +1,4 @@
+# Directory labels
+ ran
+# Source files and their labels
+/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/ran/resource_allocation/resource_allocation_frequency_test.cpp

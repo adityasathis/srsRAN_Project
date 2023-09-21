@@ -1,0 +1,5 @@
+if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/ofh/transmitter/sequence_identifier_generator_test[1]_tests.cmake")
+  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/ofh/transmitter/sequence_identifier_generator_test[1]_tests.cmake")
+else()
+  add_test(sequence_identifier_generator_test_NOT_BUILT sequence_identifier_generator_test_NOT_BUILT)
+endif()

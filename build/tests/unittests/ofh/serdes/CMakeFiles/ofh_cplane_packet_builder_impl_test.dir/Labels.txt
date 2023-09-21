@@ -1,0 +1,4 @@
+# Directory labels
+ serdes
+# Source files and their labels
+/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/ofh/serdes/ofh_cplane_packet_builder_impl_test.cpp

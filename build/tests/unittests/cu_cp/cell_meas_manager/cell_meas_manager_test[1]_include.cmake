@@ -1,0 +1,5 @@
+if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/cu_cp/cell_meas_manager/cell_meas_manager_test[1]_tests.cmake")
+  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/cu_cp/cell_meas_manager/cell_meas_manager_test[1]_tests.cmake")
+else()
+  add_test(cell_meas_manager_test_NOT_BUILT cell_meas_manager_test_NOT_BUILT)
+endif()

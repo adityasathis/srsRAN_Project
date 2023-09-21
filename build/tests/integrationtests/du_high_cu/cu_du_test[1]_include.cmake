@@ -1,0 +1,5 @@
+if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/integrationtests/du_high_cu/cu_du_test[1]_tests.cmake")
+  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/integrationtests/du_high_cu/cu_du_test[1]_tests.cmake")
+else()
+  add_test(cu_du_test_NOT_BUILT cu_du_test_NOT_BUILT)
+endif()
