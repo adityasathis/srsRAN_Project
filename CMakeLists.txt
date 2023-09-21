@@ -71,6 +71,7 @@ option(AUTO_DETECT_ISA       "Enable automatic ISA detection"           ON)
 option(BUILD_TESTS           "Compile tests"                            ON)
 option(ENABLE_GPROF          "Enable gprof"                             OFF)
 option(USE_PHY_TESTVECTORS   "Enable testvector PHY tests"              OFF)
+option(ENABLE_GRPC           "Enable gRPC"                              ON)
 
 # Set assertion level options and default value.
 set(ASSERT_LEVEL "AUTO" CACHE STRING "Assertion paranoia level")
@@ -178,6 +179,16 @@ endif()
 ########################################################################
 # Find dependencies
 ########################################################################
+
+# gRPC
+find_package(Protobuf REQUIRED)
+find_package(gRPC REQUIRED VERSION 1.58.1)
+if (gRPC_FOUND)
+    message(STATUS "Found gRPC")
+    set(SEC_LIBRARIES gRPC::grpc++)
+else(gRPC_FOUND)
+    message(FATAL_ERROR "Could not find gRPC")
+endif(gRPC_FOUND)
 
 # Backward-cpp
 find_package(Backward)
