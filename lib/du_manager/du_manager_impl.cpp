@@ -26,9 +26,13 @@
 #include "procedures/initial_du_setup_procedure.h"
 #include <condition_variable>
 #include <future>
-#include <grpc++/grpc++.h>
-#include "../../lib/grpc/e2_and_o1.grpc.pb.h"
-#include "../../lib/grpc/e2_and_o1.pb.h"
+#include <iostream>
+#include <string>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <thread>  // Include the threading library
+#include "../grpc/e2_and_o1.pb.h" // Include the generated protobuf header
 
 
 using namespace srsran;
@@ -81,14 +85,9 @@ void du_manager_impl::start()
   // Block waiting for DU setup to complete.
   fut.wait();
 
-  // Enable gRPC client for the server
-  grpc::ServerBuilder builder;
-  std::string server_address("0.0.0.0:50051");
-  builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-  srsran::srs_du::MyServiceImpl service_impl(this);
-  builder.RegisterService(&service_impl);
-  server_ = builder.BuildAndStart();
-  std::cout << "Server listening on " << server_address << std::endl;
+  // Enable protobuf for the server which will be the makeshift E2 and O1 interfaces
+  this->setup_server();
+  this->initialize_rlc_metrics();
 
   logger.info("DU manager started successfully.");
 }
@@ -98,11 +97,6 @@ void du_manager_impl::stop()
   std::unique_lock<std::mutex> lock(mutex);
   if (not std::exchange(running, false)) {
     return;
-  }
-
-  if (server_) {
-    server_->Shutdown(); // Shutdown the gRPC server
-    server_->Wait();     // Wait for the server to complete processing
   }
 
   eager_async_task<void> main_loop;

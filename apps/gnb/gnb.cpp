@@ -504,7 +504,7 @@ int main(int argc, char** argv)
 
     // Make connections between DU and RU.
     ru_ul_adapt.map_handler(sector_id, du->get_rx_symbol_handler());
-    ru_timing_adapt.map_handler(sector_id, du->get_timing_handler());
+    ru_timing_adapt.map_handler(sector_id, du->get_timing_handler());`
 
     // Start DU execution.
     du->start();

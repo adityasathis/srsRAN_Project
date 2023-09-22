@@ -18,88 +18,65 @@
 PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = ::PROTOBUF_NAMESPACE_ID::internal;
-namespace mypackage {
+namespace oran {
 template <typename>
-PROTOBUF_CONSTEXPR StreamRequest::StreamRequest(
-    ::_pbi::ConstantInitialized) {}
-struct StreamRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR StreamRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~StreamRequestDefaultTypeInternal() {}
+PROTOBUF_CONSTEXPR service_message::service_message(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.ue_max_prb_allocations_)*/{}
+  , /*decltype(_impl_.ue_kpb_metrics_)*/{}
+  , /*decltype(_impl_.type_)*/ 0
+
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct service_messageDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR service_messageDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~service_messageDefaultTypeInternal() {}
   union {
-    StreamRequest _instance;
+    service_message _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamRequestDefaultTypeInternal _StreamRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 service_messageDefaultTypeInternal _service_message_default_instance_;
 template <typename>
-PROTOBUF_CONSTEXPR StreamResponse::StreamResponse(
+PROTOBUF_CONSTEXPR rc_per_ue::rc_per_ue(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.pkt_drop_)*/ 0
+    /*decltype(_impl_.ue_index_)*/ 0
 
-  , /*decltype(_impl_.ue_index_)*/ 0
+  , /*decltype(_impl_.max_prb_)*/ 0
+
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct rc_per_ueDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR rc_per_ueDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~rc_per_ueDefaultTypeInternal() {}
+  union {
+    rc_per_ue _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 rc_per_ueDefaultTypeInternal _rc_per_ue_default_instance_;
+template <typename>
+PROTOBUF_CONSTEXPR kpm_per_ue::kpm_per_ue(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.pkt_drop_rate_)*/ 0
 
   , /*decltype(_impl_.pkt_volume_)*/ 0
 
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct StreamResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR StreamResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~StreamResponseDefaultTypeInternal() {}
-  union {
-    StreamResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamResponseDefaultTypeInternal _StreamResponse_default_instance_;
-template <typename>
-PROTOBUF_CONSTEXPR UeMaxPrbAllocation::UeMaxPrbAllocation(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.max_prb_allocation_)*/ 0
-
   , /*decltype(_impl_.ue_index_)*/ 0
 
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct UeMaxPrbAllocationDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UeMaxPrbAllocationDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UeMaxPrbAllocationDefaultTypeInternal() {}
+struct kpm_per_ueDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR kpm_per_ueDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~kpm_per_ueDefaultTypeInternal() {}
   union {
-    UeMaxPrbAllocation _instance;
+    kpm_per_ue _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UeMaxPrbAllocationDefaultTypeInternal _UeMaxPrbAllocation_default_instance_;
-template <typename>
-PROTOBUF_CONSTEXPR MatrixRequest::MatrixRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.ue_max_prb_allocations_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct MatrixRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MatrixRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MatrixRequestDefaultTypeInternal() {}
-  union {
-    MatrixRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatrixRequestDefaultTypeInternal _MatrixRequest_default_instance_;
-template <typename>
-PROTOBUF_CONSTEXPR MatrixResponse::MatrixResponse(
-    ::_pbi::ConstantInitialized) {}
-struct MatrixResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MatrixResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MatrixResponseDefaultTypeInternal() {}
-  union {
-    MatrixResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatrixResponseDefaultTypeInternal _MatrixResponse_default_instance_;
-}  // namespace mypackage
-static ::_pb::Metadata file_level_metadata_e2_5fand_5fo1_2eproto[5];
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 kpm_per_ueDefaultTypeInternal _kpm_per_ue_default_instance_;
+}  // namespace oran
+static ::_pb::Metadata file_level_metadata_e2_5fand_5fo1_2eproto[3];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_e2_5fand_5fo1_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -107,94 +84,71 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t TableStruct_e2_5fand_5fo1_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::mypackage::StreamRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::oran::service_message, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::oran::service_message, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::oran::service_message, _impl_.ue_max_prb_allocations_),
+    PROTOBUF_FIELD_OFFSET(::oran::service_message, _impl_.ue_kpb_metrics_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::oran::rc_per_ue, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.ue_index_),
-    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.pkt_drop_),
-    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.pkt_volume_),
+    PROTOBUF_FIELD_OFFSET(::oran::rc_per_ue, _impl_.ue_index_),
+    PROTOBUF_FIELD_OFFSET(::oran::rc_per_ue, _impl_.max_prb_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::mypackage::UeMaxPrbAllocation, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::oran::kpm_per_ue, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::mypackage::UeMaxPrbAllocation, _impl_.ue_index_),
-    PROTOBUF_FIELD_OFFSET(::mypackage::UeMaxPrbAllocation, _impl_.max_prb_allocation_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::mypackage::MatrixRequest, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::mypackage::MatrixRequest, _impl_.ue_max_prb_allocations_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::mypackage::MatrixResponse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::oran::kpm_per_ue, _impl_.ue_index_),
+    PROTOBUF_FIELD_OFFSET(::oran::kpm_per_ue, _impl_.pkt_drop_rate_),
+    PROTOBUF_FIELD_OFFSET(::oran::kpm_per_ue, _impl_.pkt_volume_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        { 0, -1, -1, sizeof(::mypackage::StreamRequest)},
-        { 8, -1, -1, sizeof(::mypackage::StreamResponse)},
-        { 19, -1, -1, sizeof(::mypackage::UeMaxPrbAllocation)},
-        { 29, -1, -1, sizeof(::mypackage::MatrixRequest)},
-        { 38, -1, -1, sizeof(::mypackage::MatrixResponse)},
+        { 0, -1, -1, sizeof(::oran::service_message)},
+        { 11, -1, -1, sizeof(::oran::rc_per_ue)},
+        { 21, -1, -1, sizeof(::oran::kpm_per_ue)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::mypackage::_StreamRequest_default_instance_._instance,
-    &::mypackage::_StreamResponse_default_instance_._instance,
-    &::mypackage::_UeMaxPrbAllocation_default_instance_._instance,
-    &::mypackage::_MatrixRequest_default_instance_._instance,
-    &::mypackage::_MatrixResponse_default_instance_._instance,
+    &::oran::_service_message_default_instance_._instance,
+    &::oran::_rc_per_ue_default_instance_._instance,
+    &::oran::_kpm_per_ue_default_instance_._instance,
 };
 const char descriptor_table_protodef_e2_5fand_5fo1_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\017e2_and_o1.proto\022\tmypackage\"\017\n\rStreamRe"
-    "quest\"H\n\016StreamResponse\022\020\n\010ue_index\030\001 \001("
-    "\005\022\020\n\010pkt_drop\030\002 \001(\001\022\022\n\npkt_volume\030\003 \001(\005\""
-    "B\n\022UeMaxPrbAllocation\022\020\n\010ue_index\030\001 \001(\005\022"
-    "\032\n\022max_prb_allocation\030\002 \001(\001\"N\n\rMatrixReq"
-    "uest\022=\n\026ue_max_prb_allocations\030\001 \003(\0132\035.m"
-    "ypackage.UeMaxPrbAllocation\"\020\n\016MatrixRes"
-    "ponse2\241\001\n\tMyService\022M\n\024ServerToClientStr"
-    "eam\022\030.mypackage.StreamRequest\032\031.mypackag"
-    "e.StreamResponse0\001\022E\n\016ClientToServer\022\030.m"
-    "ypackage.MatrixRequest\032\031.mypackage.Matri"
-    "xResponseb\006proto3"
+    "\n\017e2_and_o1.proto\022\004oran\"z\n\017service_messa"
+    "ge\022\014\n\004type\030\001 \001(\005\022/\n\026ue_max_prb_allocatio"
+    "ns\030\002 \003(\0132\017.oran.rc_per_ue\022(\n\016ue_kpb_metr"
+    "ics\030\003 \003(\0132\020.oran.kpm_per_ue\".\n\trc_per_ue"
+    "\022\020\n\010ue_index\030\001 \001(\005\022\017\n\007max_prb\030\002 \001(\005\"I\n\nk"
+    "pm_per_ue\022\020\n\010ue_index\030\001 \001(\005\022\025\n\rpkt_drop_"
+    "rate\030\002 \001(\001\022\022\n\npkt_volume\030\003 \001(\001b\006proto3"
 };
 static ::absl::once_flag descriptor_table_e2_5fand_5fo1_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_e2_5fand_5fo1_2eproto = {
     false,
     false,
-    457,
+    278,
     descriptor_table_protodef_e2_5fand_5fo1_2eproto,
     "e2_and_o1.proto",
     &descriptor_table_e2_5fand_5fo1_2eproto_once,
     nullptr,
     0,
-    5,
+    3,
     schemas,
     file_default_instances,
     TableStruct_e2_5fand_5fo1_2eproto::offsets,
@@ -220,78 +174,46 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_e2_5fand
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_e2_5fand_5fo1_2eproto(&descriptor_table_e2_5fand_5fo1_2eproto);
-namespace mypackage {
+namespace oran {
 // ===================================================================
 
-class StreamRequest::_Internal {
+class service_message::_Internal {
  public:
 };
 
-StreamRequest::StreamRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena) {
-  // @@protoc_insertion_point(arena_constructor:mypackage.StreamRequest)
-}
-StreamRequest::StreamRequest(const StreamRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  StreamRequest* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:mypackage.StreamRequest)
-}
-
-
-
-
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamRequest::GetClassData() const { return &_class_data_; }
-
-
-
-
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata StreamRequest::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_e2_5fand_5fo1_2eproto_getter, &descriptor_table_e2_5fand_5fo1_2eproto_once,
-      file_level_metadata_e2_5fand_5fo1_2eproto[0]);
-}
-// ===================================================================
-
-class StreamResponse::_Internal {
- public:
-};
-
-StreamResponse::StreamResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+service_message::service_message(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:mypackage.StreamResponse)
+  // @@protoc_insertion_point(arena_constructor:oran.service_message)
 }
-StreamResponse::StreamResponse(const StreamResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-      from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:mypackage.StreamResponse)
+service_message::service_message(const service_message& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  service_message* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ue_max_prb_allocations_){from._impl_.ue_max_prb_allocations_}
+    , decltype(_impl_.ue_kpb_metrics_){from._impl_.ue_kpb_metrics_}
+    , decltype(_impl_.type_) {}
+
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.type_ = from._impl_.type_;
+  // @@protoc_insertion_point(copy_constructor:oran.service_message)
 }
 
-inline void StreamResponse::SharedCtor(::_pb::Arena* arena) {
+inline void service_message::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.pkt_drop_) { 0 }
-
-    , decltype(_impl_.ue_index_) { 0 }
-
-    , decltype(_impl_.pkt_volume_) { 0 }
+      decltype(_impl_.ue_max_prb_allocations_){arena}
+    , decltype(_impl_.ue_kpb_metrics_){arena}
+    , decltype(_impl_.type_) { 0 }
 
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
 
-StreamResponse::~StreamResponse() {
-  // @@protoc_insertion_point(destructor:mypackage.StreamResponse)
+service_message::~service_message() {
+  // @@protoc_insertion_point(destructor:oran.service_message)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -299,27 +221,269 @@ StreamResponse::~StreamResponse() {
   SharedDtor();
 }
 
-inline void StreamResponse::SharedDtor() {
+inline void service_message::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _internal_mutable_ue_max_prb_allocations()->~RepeatedPtrField();
+  _internal_mutable_ue_kpb_metrics()->~RepeatedPtrField();
 }
 
-void StreamResponse::SetCachedSize(int size) const {
+void service_message::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void StreamResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:mypackage.StreamResponse)
+void service_message::Clear() {
+// @@protoc_insertion_point(message_clear_start:oran.service_message)
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.pkt_drop_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.pkt_volume_) -
-      reinterpret_cast<char*>(&_impl_.pkt_drop_)) + sizeof(_impl_.pkt_volume_));
+  _internal_mutable_ue_max_prb_allocations()->Clear();
+  _internal_mutable_ue_kpb_metrics()->Clear();
+  _impl_.type_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* StreamResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* service_message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 8)) {
+          _impl_.type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else {
+          goto handle_unusual;
+        }
+        continue;
+      // repeated .oran.rc_per_ue ue_max_prb_allocations = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_ue_max_prb_allocations(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else {
+          goto handle_unusual;
+        }
+        continue;
+      // repeated .oran.kpm_per_ue ue_kpb_metrics = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_ue_kpb_metrics(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else {
+          goto handle_unusual;
+        }
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::uint8_t* service_message::_InternalSerialize(
+    ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:oran.service_message)
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 type = 1;
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+        1, this->_internal_type(), target);
+  }
+
+  // repeated .oran.rc_per_ue ue_max_prb_allocations = 2;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_ue_max_prb_allocations_size()); i < n; i++) {
+    const auto& repfield = this->_internal_ue_max_prb_allocations(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated .oran.kpm_per_ue ue_kpb_metrics = 3;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_ue_kpb_metrics_size()); i < n; i++) {
+    const auto& repfield = this->_internal_ue_kpb_metrics(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:oran.service_message)
+  return target;
+}
+
+::size_t service_message::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:oran.service_message)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .oran.rc_per_ue ue_max_prb_allocations = 2;
+  total_size += 1UL * this->_internal_ue_max_prb_allocations_size();
+  for (const auto& msg : this->_internal_ue_max_prb_allocations()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .oran.kpm_per_ue ue_kpb_metrics = 3;
+  total_size += 1UL * this->_internal_ue_kpb_metrics_size();
+  for (const auto& msg : this->_internal_ue_kpb_metrics()) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // int32 type = 1;
+  if (this->_internal_type() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData service_message::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    service_message::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*service_message::GetClassData() const { return &_class_data_; }
+
+
+void service_message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<service_message*>(&to_msg);
+  auto& from = static_cast<const service_message&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:oran.service_message)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_ue_max_prb_allocations()->MergeFrom(from._internal_ue_max_prb_allocations());
+  _this->_internal_mutable_ue_kpb_metrics()->MergeFrom(from._internal_ue_kpb_metrics());
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void service_message::CopyFrom(const service_message& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:oran.service_message)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool service_message::IsInitialized() const {
+  return true;
+}
+
+void service_message::InternalSwap(service_message* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _internal_mutable_ue_max_prb_allocations()->InternalSwap(other->_internal_mutable_ue_max_prb_allocations());
+  _internal_mutable_ue_kpb_metrics()->InternalSwap(other->_internal_mutable_ue_kpb_metrics());
+
+  swap(_impl_.type_, other->_impl_.type_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata service_message::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_e2_5fand_5fo1_2eproto_getter, &descriptor_table_e2_5fand_5fo1_2eproto_once,
+      file_level_metadata_e2_5fand_5fo1_2eproto[0]);
+}
+// ===================================================================
+
+class rc_per_ue::_Internal {
+ public:
+};
+
+rc_per_ue::rc_per_ue(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:oran.rc_per_ue)
+}
+rc_per_ue::rc_per_ue(const rc_per_ue& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:oran.rc_per_ue)
+}
+
+inline void rc_per_ue::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.ue_index_) { 0 }
+
+    , decltype(_impl_.max_prb_) { 0 }
+
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+rc_per_ue::~rc_per_ue() {
+  // @@protoc_insertion_point(destructor:oran.rc_per_ue)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void rc_per_ue::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void rc_per_ue::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void rc_per_ue::Clear() {
+// @@protoc_insertion_point(message_clear_start:oran.rc_per_ue)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.ue_index_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.max_prb_) -
+      reinterpret_cast<char*>(&_impl_.ue_index_)) + sizeof(_impl_.max_prb_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* rc_per_ue::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::uint32_t tag;
@@ -334,19 +498,10 @@ const char* StreamResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext
           goto handle_unusual;
         }
         continue;
-      // double pkt_drop = 2;
+      // int32 max_prb = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 17)) {
-          _impl_.pkt_drop_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
-        } else {
-          goto handle_unusual;
-        }
-        continue;
-      // int32 pkt_volume = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 24)) {
-          _impl_.pkt_volume_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 16)) {
+          _impl_.max_prb_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else {
           goto handle_unusual;
@@ -375,9 +530,9 @@ failure:
 #undef CHK_
 }
 
-::uint8_t* StreamResponse::_InternalSerialize(
+::uint8_t* rc_per_ue::_InternalSerialize(
     ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:mypackage.StreamResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:oran.rc_per_ue)
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -388,21 +543,243 @@ failure:
         1, this->_internal_ue_index(), target);
   }
 
-  // double pkt_drop = 2;
-  static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_pkt_drop = this->_internal_pkt_drop();
-  ::uint64_t raw_pkt_drop;
-  memcpy(&raw_pkt_drop, &tmp_pkt_drop, sizeof(tmp_pkt_drop));
-  if (raw_pkt_drop != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-        2, this->_internal_pkt_drop(), target);
-  }
-
-  // int32 pkt_volume = 3;
-  if (this->_internal_pkt_volume() != 0) {
+  // int32 max_prb = 2;
+  if (this->_internal_max_prb() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+        2, this->_internal_max_prb(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:oran.rc_per_ue)
+  return target;
+}
+
+::size_t rc_per_ue::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:oran.rc_per_ue)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 ue_index = 1;
+  if (this->_internal_ue_index() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_ue_index());
+  }
+
+  // int32 max_prb = 2;
+  if (this->_internal_max_prb() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_max_prb());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData rc_per_ue::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    rc_per_ue::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*rc_per_ue::GetClassData() const { return &_class_data_; }
+
+
+void rc_per_ue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<rc_per_ue*>(&to_msg);
+  auto& from = static_cast<const rc_per_ue&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:oran.rc_per_ue)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_ue_index() != 0) {
+    _this->_internal_set_ue_index(from._internal_ue_index());
+  }
+  if (from._internal_max_prb() != 0) {
+    _this->_internal_set_max_prb(from._internal_max_prb());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void rc_per_ue::CopyFrom(const rc_per_ue& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:oran.rc_per_ue)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool rc_per_ue::IsInitialized() const {
+  return true;
+}
+
+void rc_per_ue::InternalSwap(rc_per_ue* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(rc_per_ue, _impl_.max_prb_)
+      + sizeof(rc_per_ue::_impl_.max_prb_)
+      - PROTOBUF_FIELD_OFFSET(rc_per_ue, _impl_.ue_index_)>(
+          reinterpret_cast<char*>(&_impl_.ue_index_),
+          reinterpret_cast<char*>(&other->_impl_.ue_index_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata rc_per_ue::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_e2_5fand_5fo1_2eproto_getter, &descriptor_table_e2_5fand_5fo1_2eproto_once,
+      file_level_metadata_e2_5fand_5fo1_2eproto[1]);
+}
+// ===================================================================
+
+class kpm_per_ue::_Internal {
+ public:
+};
+
+kpm_per_ue::kpm_per_ue(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:oran.kpm_per_ue)
+}
+kpm_per_ue::kpm_per_ue(const kpm_per_ue& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
+      from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:oran.kpm_per_ue)
+}
+
+inline void kpm_per_ue::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.pkt_drop_rate_) { 0 }
+
+    , decltype(_impl_.pkt_volume_) { 0 }
+
+    , decltype(_impl_.ue_index_) { 0 }
+
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+kpm_per_ue::~kpm_per_ue() {
+  // @@protoc_insertion_point(destructor:oran.kpm_per_ue)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void kpm_per_ue::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void kpm_per_ue::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void kpm_per_ue::Clear() {
+// @@protoc_insertion_point(message_clear_start:oran.kpm_per_ue)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.pkt_drop_rate_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.ue_index_) -
+      reinterpret_cast<char*>(&_impl_.pkt_drop_rate_)) + sizeof(_impl_.ue_index_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* kpm_per_ue::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 ue_index = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 8)) {
+          _impl_.ue_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else {
+          goto handle_unusual;
+        }
+        continue;
+      // double pkt_drop_rate = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 17)) {
+          _impl_.pkt_drop_rate_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else {
+          goto handle_unusual;
+        }
+        continue;
+      // double pkt_volume = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 25)) {
+          _impl_.pkt_volume_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else {
+          goto handle_unusual;
+        }
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::uint8_t* kpm_per_ue::_InternalSerialize(
+    ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:oran.kpm_per_ue)
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 ue_index = 1;
+  if (this->_internal_ue_index() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+        1, this->_internal_ue_index(), target);
+  }
+
+  // double pkt_drop_rate = 2;
+  static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
+  double tmp_pkt_drop_rate = this->_internal_pkt_drop_rate();
+  ::uint64_t raw_pkt_drop_rate;
+  memcpy(&raw_pkt_drop_rate, &tmp_pkt_drop_rate, sizeof(tmp_pkt_drop_rate));
+  if (raw_pkt_drop_rate != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        2, this->_internal_pkt_drop_rate(), target);
+  }
+
+  // double pkt_volume = 3;
+  static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
+  double tmp_pkt_volume = this->_internal_pkt_volume();
+  ::uint64_t raw_pkt_volume;
+  memcpy(&raw_pkt_volume, &tmp_pkt_volume, sizeof(tmp_pkt_volume));
+  if (raw_pkt_volume != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
         3, this->_internal_pkt_volume(), target);
   }
 
@@ -410,24 +787,33 @@ failure:
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:mypackage.StreamResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:oran.kpm_per_ue)
   return target;
 }
 
-::size_t StreamResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:mypackage.StreamResponse)
+::size_t kpm_per_ue::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:oran.kpm_per_ue)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // double pkt_drop = 2;
+  // double pkt_drop_rate = 2;
   static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_pkt_drop = this->_internal_pkt_drop();
-  ::uint64_t raw_pkt_drop;
-  memcpy(&raw_pkt_drop, &tmp_pkt_drop, sizeof(tmp_pkt_drop));
-  if (raw_pkt_drop != 0) {
+  double tmp_pkt_drop_rate = this->_internal_pkt_drop_rate();
+  ::uint64_t raw_pkt_drop_rate;
+  memcpy(&raw_pkt_drop_rate, &tmp_pkt_drop_rate, sizeof(tmp_pkt_drop_rate));
+  if (raw_pkt_drop_rate != 0) {
+    total_size += 9;
+  }
+
+  // double pkt_volume = 3;
+  static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
+  double tmp_pkt_volume = this->_internal_pkt_volume();
+  ::uint64_t raw_pkt_volume;
+  memcpy(&raw_pkt_volume, &tmp_pkt_volume, sizeof(tmp_pkt_volume));
+  if (raw_pkt_volume != 0) {
     total_size += 9;
   }
 
@@ -437,533 +823,85 @@ failure:
         this->_internal_ue_index());
   }
 
-  // int32 pkt_volume = 3;
-  if (this->_internal_pkt_volume() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_pkt_volume());
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamResponse::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData kpm_per_ue::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    StreamResponse::MergeImpl
+    kpm_per_ue::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamResponse::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*kpm_per_ue::GetClassData() const { return &_class_data_; }
 
 
-void StreamResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<StreamResponse*>(&to_msg);
-  auto& from = static_cast<const StreamResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:mypackage.StreamResponse)
+void kpm_per_ue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<kpm_per_ue*>(&to_msg);
+  auto& from = static_cast<const kpm_per_ue&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:oran.kpm_per_ue)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_pkt_drop = from._internal_pkt_drop();
-  ::uint64_t raw_pkt_drop;
-  memcpy(&raw_pkt_drop, &tmp_pkt_drop, sizeof(tmp_pkt_drop));
-  if (raw_pkt_drop != 0) {
-    _this->_internal_set_pkt_drop(from._internal_pkt_drop());
+  double tmp_pkt_drop_rate = from._internal_pkt_drop_rate();
+  ::uint64_t raw_pkt_drop_rate;
+  memcpy(&raw_pkt_drop_rate, &tmp_pkt_drop_rate, sizeof(tmp_pkt_drop_rate));
+  if (raw_pkt_drop_rate != 0) {
+    _this->_internal_set_pkt_drop_rate(from._internal_pkt_drop_rate());
   }
-  if (from._internal_ue_index() != 0) {
-    _this->_internal_set_ue_index(from._internal_ue_index());
-  }
-  if (from._internal_pkt_volume() != 0) {
+  static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
+  double tmp_pkt_volume = from._internal_pkt_volume();
+  ::uint64_t raw_pkt_volume;
+  memcpy(&raw_pkt_volume, &tmp_pkt_volume, sizeof(tmp_pkt_volume));
+  if (raw_pkt_volume != 0) {
     _this->_internal_set_pkt_volume(from._internal_pkt_volume());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void StreamResponse::CopyFrom(const StreamResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:mypackage.StreamResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool StreamResponse::IsInitialized() const {
-  return true;
-}
-
-void StreamResponse::InternalSwap(StreamResponse* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(StreamResponse, _impl_.pkt_volume_)
-      + sizeof(StreamResponse::_impl_.pkt_volume_)
-      - PROTOBUF_FIELD_OFFSET(StreamResponse, _impl_.pkt_drop_)>(
-          reinterpret_cast<char*>(&_impl_.pkt_drop_),
-          reinterpret_cast<char*>(&other->_impl_.pkt_drop_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata StreamResponse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_e2_5fand_5fo1_2eproto_getter, &descriptor_table_e2_5fand_5fo1_2eproto_once,
-      file_level_metadata_e2_5fand_5fo1_2eproto[1]);
-}
-// ===================================================================
-
-class UeMaxPrbAllocation::_Internal {
- public:
-};
-
-UeMaxPrbAllocation::UeMaxPrbAllocation(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:mypackage.UeMaxPrbAllocation)
-}
-UeMaxPrbAllocation::UeMaxPrbAllocation(const UeMaxPrbAllocation& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _impl_(from._impl_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-      from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:mypackage.UeMaxPrbAllocation)
-}
-
-inline void UeMaxPrbAllocation::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.max_prb_allocation_) { 0 }
-
-    , decltype(_impl_.ue_index_) { 0 }
-
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-UeMaxPrbAllocation::~UeMaxPrbAllocation() {
-  // @@protoc_insertion_point(destructor:mypackage.UeMaxPrbAllocation)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void UeMaxPrbAllocation::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-}
-
-void UeMaxPrbAllocation::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void UeMaxPrbAllocation::Clear() {
-// @@protoc_insertion_point(message_clear_start:mypackage.UeMaxPrbAllocation)
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::memset(&_impl_.max_prb_allocation_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.ue_index_) -
-      reinterpret_cast<char*>(&_impl_.max_prb_allocation_)) + sizeof(_impl_.ue_index_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* UeMaxPrbAllocation::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 ue_index = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 8)) {
-          _impl_.ue_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else {
-          goto handle_unusual;
-        }
-        continue;
-      // double max_prb_allocation = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 17)) {
-          _impl_.max_prb_allocation_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
-        } else {
-          goto handle_unusual;
-        }
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-::uint8_t* UeMaxPrbAllocation::_InternalSerialize(
-    ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:mypackage.UeMaxPrbAllocation)
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 ue_index = 1;
-  if (this->_internal_ue_index() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(
-        1, this->_internal_ue_index(), target);
-  }
-
-  // double max_prb_allocation = 2;
-  static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_max_prb_allocation = this->_internal_max_prb_allocation();
-  ::uint64_t raw_max_prb_allocation;
-  memcpy(&raw_max_prb_allocation, &tmp_max_prb_allocation, sizeof(tmp_max_prb_allocation));
-  if (raw_max_prb_allocation != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-        2, this->_internal_max_prb_allocation(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:mypackage.UeMaxPrbAllocation)
-  return target;
-}
-
-::size_t UeMaxPrbAllocation::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:mypackage.UeMaxPrbAllocation)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // double max_prb_allocation = 2;
-  static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_max_prb_allocation = this->_internal_max_prb_allocation();
-  ::uint64_t raw_max_prb_allocation;
-  memcpy(&raw_max_prb_allocation, &tmp_max_prb_allocation, sizeof(tmp_max_prb_allocation));
-  if (raw_max_prb_allocation != 0) {
-    total_size += 9;
-  }
-
-  // int32 ue_index = 1;
-  if (this->_internal_ue_index() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_ue_index());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UeMaxPrbAllocation::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UeMaxPrbAllocation::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UeMaxPrbAllocation::GetClassData() const { return &_class_data_; }
-
-
-void UeMaxPrbAllocation::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<UeMaxPrbAllocation*>(&to_msg);
-  auto& from = static_cast<const UeMaxPrbAllocation&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:mypackage.UeMaxPrbAllocation)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_max_prb_allocation = from._internal_max_prb_allocation();
-  ::uint64_t raw_max_prb_allocation;
-  memcpy(&raw_max_prb_allocation, &tmp_max_prb_allocation, sizeof(tmp_max_prb_allocation));
-  if (raw_max_prb_allocation != 0) {
-    _this->_internal_set_max_prb_allocation(from._internal_max_prb_allocation());
-  }
   if (from._internal_ue_index() != 0) {
     _this->_internal_set_ue_index(from._internal_ue_index());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UeMaxPrbAllocation::CopyFrom(const UeMaxPrbAllocation& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:mypackage.UeMaxPrbAllocation)
+void kpm_per_ue::CopyFrom(const kpm_per_ue& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:oran.kpm_per_ue)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool UeMaxPrbAllocation::IsInitialized() const {
+bool kpm_per_ue::IsInitialized() const {
   return true;
 }
 
-void UeMaxPrbAllocation::InternalSwap(UeMaxPrbAllocation* other) {
+void kpm_per_ue::InternalSwap(kpm_per_ue* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(UeMaxPrbAllocation, _impl_.ue_index_)
-      + sizeof(UeMaxPrbAllocation::_impl_.ue_index_)
-      - PROTOBUF_FIELD_OFFSET(UeMaxPrbAllocation, _impl_.max_prb_allocation_)>(
-          reinterpret_cast<char*>(&_impl_.max_prb_allocation_),
-          reinterpret_cast<char*>(&other->_impl_.max_prb_allocation_));
+      PROTOBUF_FIELD_OFFSET(kpm_per_ue, _impl_.ue_index_)
+      + sizeof(kpm_per_ue::_impl_.ue_index_)
+      - PROTOBUF_FIELD_OFFSET(kpm_per_ue, _impl_.pkt_drop_rate_)>(
+          reinterpret_cast<char*>(&_impl_.pkt_drop_rate_),
+          reinterpret_cast<char*>(&other->_impl_.pkt_drop_rate_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata UeMaxPrbAllocation::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata kpm_per_ue::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_e2_5fand_5fo1_2eproto_getter, &descriptor_table_e2_5fand_5fo1_2eproto_once,
       file_level_metadata_e2_5fand_5fo1_2eproto[2]);
 }
-// ===================================================================
-
-class MatrixRequest::_Internal {
- public:
-};
-
-MatrixRequest::MatrixRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:mypackage.MatrixRequest)
-}
-MatrixRequest::MatrixRequest(const MatrixRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  MatrixRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.ue_max_prb_allocations_){from._impl_.ue_max_prb_allocations_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:mypackage.MatrixRequest)
-}
-
-inline void MatrixRequest::SharedCtor(::_pb::Arena* arena) {
-  (void)arena;
-  new (&_impl_) Impl_{
-      decltype(_impl_.ue_max_prb_allocations_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-MatrixRequest::~MatrixRequest() {
-  // @@protoc_insertion_point(destructor:mypackage.MatrixRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void MatrixRequest::SharedDtor() {
-  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _internal_mutable_ue_max_prb_allocations()->~RepeatedPtrField();
-}
-
-void MatrixRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void MatrixRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:mypackage.MatrixRequest)
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _internal_mutable_ue_max_prb_allocations()->Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* MatrixRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated .mypackage.UeMaxPrbAllocation ue_max_prb_allocations = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_ue_max_prb_allocations(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else {
-          goto handle_unusual;
-        }
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-::uint8_t* MatrixRequest::_InternalSerialize(
-    ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:mypackage.MatrixRequest)
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated .mypackage.UeMaxPrbAllocation ue_max_prb_allocations = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_ue_max_prb_allocations_size()); i < n; i++) {
-    const auto& repfield = this->_internal_ue_max_prb_allocations(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:mypackage.MatrixRequest)
-  return target;
-}
-
-::size_t MatrixRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:mypackage.MatrixRequest)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // repeated .mypackage.UeMaxPrbAllocation ue_max_prb_allocations = 1;
-  total_size += 1UL * this->_internal_ue_max_prb_allocations_size();
-  for (const auto& msg : this->_internal_ue_max_prb_allocations()) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MatrixRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    MatrixRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MatrixRequest::GetClassData() const { return &_class_data_; }
-
-
-void MatrixRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<MatrixRequest*>(&to_msg);
-  auto& from = static_cast<const MatrixRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:mypackage.MatrixRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  _this->_internal_mutable_ue_max_prb_allocations()->MergeFrom(from._internal_ue_max_prb_allocations());
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void MatrixRequest::CopyFrom(const MatrixRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:mypackage.MatrixRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool MatrixRequest::IsInitialized() const {
-  return true;
-}
-
-void MatrixRequest::InternalSwap(MatrixRequest* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _internal_mutable_ue_max_prb_allocations()->InternalSwap(other->_internal_mutable_ue_max_prb_allocations());
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata MatrixRequest::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_e2_5fand_5fo1_2eproto_getter, &descriptor_table_e2_5fand_5fo1_2eproto_once,
-      file_level_metadata_e2_5fand_5fo1_2eproto[3]);
-}
-// ===================================================================
-
-class MatrixResponse::_Internal {
- public:
-};
-
-MatrixResponse::MatrixResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena) {
-  // @@protoc_insertion_point(arena_constructor:mypackage.MatrixResponse)
-}
-MatrixResponse::MatrixResponse(const MatrixResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  MatrixResponse* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:mypackage.MatrixResponse)
-}
-
-
-
-
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MatrixResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MatrixResponse::GetClassData() const { return &_class_data_; }
-
-
-
-
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata MatrixResponse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_e2_5fand_5fo1_2eproto_getter, &descriptor_table_e2_5fand_5fo1_2eproto_once,
-      file_level_metadata_e2_5fand_5fo1_2eproto[4]);
-}
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace mypackage
+}  // namespace oran
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::mypackage::StreamRequest*
-Arena::CreateMaybeMessage< ::mypackage::StreamRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mypackage::StreamRequest >(arena);
+template<> PROTOBUF_NOINLINE ::oran::service_message*
+Arena::CreateMaybeMessage< ::oran::service_message >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::oran::service_message >(arena);
 }
-template<> PROTOBUF_NOINLINE ::mypackage::StreamResponse*
-Arena::CreateMaybeMessage< ::mypackage::StreamResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mypackage::StreamResponse >(arena);
+template<> PROTOBUF_NOINLINE ::oran::rc_per_ue*
+Arena::CreateMaybeMessage< ::oran::rc_per_ue >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::oran::rc_per_ue >(arena);
 }
-template<> PROTOBUF_NOINLINE ::mypackage::UeMaxPrbAllocation*
-Arena::CreateMaybeMessage< ::mypackage::UeMaxPrbAllocation >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mypackage::UeMaxPrbAllocation >(arena);
-}
-template<> PROTOBUF_NOINLINE ::mypackage::MatrixRequest*
-Arena::CreateMaybeMessage< ::mypackage::MatrixRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mypackage::MatrixRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::mypackage::MatrixResponse*
-Arena::CreateMaybeMessage< ::mypackage::MatrixResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mypackage::MatrixResponse >(arena);
+template<> PROTOBUF_NOINLINE ::oran::kpm_per_ue*
+Arena::CreateMaybeMessage< ::oran::kpm_per_ue >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::oran::kpm_per_ue >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 // @@protoc_insertion_point(global_scope)

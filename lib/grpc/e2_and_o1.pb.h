@@ -24,7 +24,6 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
-#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
 #include "google/protobuf/generated_message_reflection.h"
@@ -51,61 +50,52 @@ struct TableStruct_e2_5fand_5fo1_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable
     descriptor_table_e2_5fand_5fo1_2eproto;
-namespace mypackage {
-class MatrixRequest;
-struct MatrixRequestDefaultTypeInternal;
-extern MatrixRequestDefaultTypeInternal _MatrixRequest_default_instance_;
-class MatrixResponse;
-struct MatrixResponseDefaultTypeInternal;
-extern MatrixResponseDefaultTypeInternal _MatrixResponse_default_instance_;
-class StreamRequest;
-struct StreamRequestDefaultTypeInternal;
-extern StreamRequestDefaultTypeInternal _StreamRequest_default_instance_;
-class StreamResponse;
-struct StreamResponseDefaultTypeInternal;
-extern StreamResponseDefaultTypeInternal _StreamResponse_default_instance_;
-class UeMaxPrbAllocation;
-struct UeMaxPrbAllocationDefaultTypeInternal;
-extern UeMaxPrbAllocationDefaultTypeInternal _UeMaxPrbAllocation_default_instance_;
-}  // namespace mypackage
+namespace oran {
+class kpm_per_ue;
+struct kpm_per_ueDefaultTypeInternal;
+extern kpm_per_ueDefaultTypeInternal _kpm_per_ue_default_instance_;
+class rc_per_ue;
+struct rc_per_ueDefaultTypeInternal;
+extern rc_per_ueDefaultTypeInternal _rc_per_ue_default_instance_;
+class service_message;
+struct service_messageDefaultTypeInternal;
+extern service_messageDefaultTypeInternal _service_message_default_instance_;
+}  // namespace oran
 PROTOBUF_NAMESPACE_OPEN
 template <>
-::mypackage::MatrixRequest* Arena::CreateMaybeMessage<::mypackage::MatrixRequest>(Arena*);
+::oran::kpm_per_ue* Arena::CreateMaybeMessage<::oran::kpm_per_ue>(Arena*);
 template <>
-::mypackage::MatrixResponse* Arena::CreateMaybeMessage<::mypackage::MatrixResponse>(Arena*);
+::oran::rc_per_ue* Arena::CreateMaybeMessage<::oran::rc_per_ue>(Arena*);
 template <>
-::mypackage::StreamRequest* Arena::CreateMaybeMessage<::mypackage::StreamRequest>(Arena*);
-template <>
-::mypackage::StreamResponse* Arena::CreateMaybeMessage<::mypackage::StreamResponse>(Arena*);
-template <>
-::mypackage::UeMaxPrbAllocation* Arena::CreateMaybeMessage<::mypackage::UeMaxPrbAllocation>(Arena*);
+::oran::service_message* Arena::CreateMaybeMessage<::oran::service_message>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
-namespace mypackage {
+namespace oran {
 
 // ===================================================================
 
 
 // -------------------------------------------------------------------
 
-class StreamRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mypackage.StreamRequest) */ {
+class service_message final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:oran.service_message) */ {
  public:
-  inline StreamRequest() : StreamRequest(nullptr) {}
+  inline service_message() : service_message(nullptr) {}
+  ~service_message() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR StreamRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR service_message(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  StreamRequest(const StreamRequest& from);
-  StreamRequest(StreamRequest&& from) noexcept
-    : StreamRequest() {
+  service_message(const service_message& from);
+  service_message(service_message&& from) noexcept
+    : service_message() {
     *this = ::std::move(from);
   }
 
-  inline StreamRequest& operator=(const StreamRequest& from) {
+  inline service_message& operator=(const service_message& from) {
     CopyFrom(from);
     return *this;
   }
-  inline StreamRequest& operator=(StreamRequest&& from) noexcept {
+  inline service_message& operator=(service_message&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -135,20 +125,20 @@ class StreamRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const StreamRequest& default_instance() {
+  static const service_message& default_instance() {
     return *internal_default_instance();
   }
-  static inline const StreamRequest* internal_default_instance() {
-    return reinterpret_cast<const StreamRequest*>(
-               &_StreamRequest_default_instance_);
+  static inline const service_message* internal_default_instance() {
+    return reinterpret_cast<const service_message*>(
+               &_service_message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(StreamRequest& a, StreamRequest& b) {
+  friend void swap(service_message& a, service_message& b) {
     a.Swap(&b);
   }
-  inline void Swap(StreamRequest* other) {
+  inline void Swap(service_message* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -161,7 +151,7 @@ class StreamRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(StreamRequest* other) {
+  void UnsafeArenaSwap(service_message* other) {
     if (other == this) return;
     ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -169,139 +159,14 @@ class StreamRequest final :
 
   // implements Message ----------------------------------------------
 
-  StreamRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<StreamRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const StreamRequest& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const StreamRequest& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-  public:
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "mypackage.StreamRequest";
-  }
-  protected:
-  explicit StreamRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:mypackage.StreamRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-  };
-  friend struct ::TableStruct_e2_5fand_5fo1_2eproto;
-};// -------------------------------------------------------------------
-
-class StreamResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mypackage.StreamResponse) */ {
- public:
-  inline StreamResponse() : StreamResponse(nullptr) {}
-  ~StreamResponse() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR StreamResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  StreamResponse(const StreamResponse& from);
-  StreamResponse(StreamResponse&& from) noexcept
-    : StreamResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline StreamResponse& operator=(const StreamResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline StreamResponse& operator=(StreamResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-  }
-  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const StreamResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const StreamResponse* internal_default_instance() {
-    return reinterpret_cast<const StreamResponse*>(
-               &_StreamResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(StreamResponse& a, StreamResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(StreamResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(StreamResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  StreamResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<StreamResponse>(arena);
+  service_message* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<service_message>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const StreamResponse& from);
+  void CopyFrom(const service_message& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const StreamResponse& from) {
-    StreamResponse::MergeImpl(*this, from);
+  void MergeFrom( const service_message& from) {
+    service_message::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -319,15 +184,15 @@ class StreamResponse final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(StreamResponse* other);
+  void InternalSwap(service_message* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mypackage.StreamResponse";
+    return "oran.service_message";
   }
   protected:
-  explicit StreamResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit service_message(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   public:
 
   static const ClassData _class_data_;
@@ -340,375 +205,61 @@ class StreamResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPktDropFieldNumber = 2,
-    kUeIndexFieldNumber = 1,
-    kPktVolumeFieldNumber = 3,
+    kUeMaxPrbAllocationsFieldNumber = 2,
+    kUeKpbMetricsFieldNumber = 3,
+    kTypeFieldNumber = 1,
   };
-  // double pkt_drop = 2;
-  void clear_pkt_drop() ;
-  double pkt_drop() const;
-  void set_pkt_drop(double value);
-
-  private:
-  double _internal_pkt_drop() const;
-  void _internal_set_pkt_drop(double value);
-
-  public:
-  // int32 ue_index = 1;
-  void clear_ue_index() ;
-  ::int32_t ue_index() const;
-  void set_ue_index(::int32_t value);
-
-  private:
-  ::int32_t _internal_ue_index() const;
-  void _internal_set_ue_index(::int32_t value);
-
-  public:
-  // int32 pkt_volume = 3;
-  void clear_pkt_volume() ;
-  ::int32_t pkt_volume() const;
-  void set_pkt_volume(::int32_t value);
-
-  private:
-  ::int32_t _internal_pkt_volume() const;
-  void _internal_set_pkt_volume(::int32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:mypackage.StreamResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    double pkt_drop_;
-    ::int32_t ue_index_;
-    ::int32_t pkt_volume_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_e2_5fand_5fo1_2eproto;
-};// -------------------------------------------------------------------
-
-class UeMaxPrbAllocation final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mypackage.UeMaxPrbAllocation) */ {
- public:
-  inline UeMaxPrbAllocation() : UeMaxPrbAllocation(nullptr) {}
-  ~UeMaxPrbAllocation() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR UeMaxPrbAllocation(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  UeMaxPrbAllocation(const UeMaxPrbAllocation& from);
-  UeMaxPrbAllocation(UeMaxPrbAllocation&& from) noexcept
-    : UeMaxPrbAllocation() {
-    *this = ::std::move(from);
-  }
-
-  inline UeMaxPrbAllocation& operator=(const UeMaxPrbAllocation& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline UeMaxPrbAllocation& operator=(UeMaxPrbAllocation&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-  }
-  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const UeMaxPrbAllocation& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const UeMaxPrbAllocation* internal_default_instance() {
-    return reinterpret_cast<const UeMaxPrbAllocation*>(
-               &_UeMaxPrbAllocation_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(UeMaxPrbAllocation& a, UeMaxPrbAllocation& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(UeMaxPrbAllocation* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(UeMaxPrbAllocation* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  UeMaxPrbAllocation* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UeMaxPrbAllocation>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const UeMaxPrbAllocation& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const UeMaxPrbAllocation& from) {
-    UeMaxPrbAllocation::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(UeMaxPrbAllocation* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "mypackage.UeMaxPrbAllocation";
-  }
-  protected:
-  explicit UeMaxPrbAllocation(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kMaxPrbAllocationFieldNumber = 2,
-    kUeIndexFieldNumber = 1,
-  };
-  // double max_prb_allocation = 2;
-  void clear_max_prb_allocation() ;
-  double max_prb_allocation() const;
-  void set_max_prb_allocation(double value);
-
-  private:
-  double _internal_max_prb_allocation() const;
-  void _internal_set_max_prb_allocation(double value);
-
-  public:
-  // int32 ue_index = 1;
-  void clear_ue_index() ;
-  ::int32_t ue_index() const;
-  void set_ue_index(::int32_t value);
-
-  private:
-  ::int32_t _internal_ue_index() const;
-  void _internal_set_ue_index(::int32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:mypackage.UeMaxPrbAllocation)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    double max_prb_allocation_;
-    ::int32_t ue_index_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_e2_5fand_5fo1_2eproto;
-};// -------------------------------------------------------------------
-
-class MatrixRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mypackage.MatrixRequest) */ {
- public:
-  inline MatrixRequest() : MatrixRequest(nullptr) {}
-  ~MatrixRequest() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MatrixRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  MatrixRequest(const MatrixRequest& from);
-  MatrixRequest(MatrixRequest&& from) noexcept
-    : MatrixRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline MatrixRequest& operator=(const MatrixRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MatrixRequest& operator=(MatrixRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-  }
-  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MatrixRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MatrixRequest* internal_default_instance() {
-    return reinterpret_cast<const MatrixRequest*>(
-               &_MatrixRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    3;
-
-  friend void swap(MatrixRequest& a, MatrixRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MatrixRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MatrixRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MatrixRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MatrixRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const MatrixRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const MatrixRequest& from) {
-    MatrixRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(MatrixRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "mypackage.MatrixRequest";
-  }
-  protected:
-  explicit MatrixRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kUeMaxPrbAllocationsFieldNumber = 1,
-  };
-  // repeated .mypackage.UeMaxPrbAllocation ue_max_prb_allocations = 1;
+  // repeated .oran.rc_per_ue ue_max_prb_allocations = 2;
   int ue_max_prb_allocations_size() const;
   private:
   int _internal_ue_max_prb_allocations_size() const;
 
   public:
   void clear_ue_max_prb_allocations() ;
-  ::mypackage::UeMaxPrbAllocation* mutable_ue_max_prb_allocations(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mypackage::UeMaxPrbAllocation >*
+  ::oran::rc_per_ue* mutable_ue_max_prb_allocations(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::rc_per_ue >*
       mutable_ue_max_prb_allocations();
   private:
-  const ::mypackage::UeMaxPrbAllocation& _internal_ue_max_prb_allocations(int index) const;
-  ::mypackage::UeMaxPrbAllocation* _internal_add_ue_max_prb_allocations();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::mypackage::UeMaxPrbAllocation>& _internal_ue_max_prb_allocations() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::mypackage::UeMaxPrbAllocation>* _internal_mutable_ue_max_prb_allocations();
+  const ::oran::rc_per_ue& _internal_ue_max_prb_allocations(int index) const;
+  ::oran::rc_per_ue* _internal_add_ue_max_prb_allocations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::oran::rc_per_ue>& _internal_ue_max_prb_allocations() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::oran::rc_per_ue>* _internal_mutable_ue_max_prb_allocations();
   public:
-  const ::mypackage::UeMaxPrbAllocation& ue_max_prb_allocations(int index) const;
-  ::mypackage::UeMaxPrbAllocation* add_ue_max_prb_allocations();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mypackage::UeMaxPrbAllocation >&
+  const ::oran::rc_per_ue& ue_max_prb_allocations(int index) const;
+  ::oran::rc_per_ue* add_ue_max_prb_allocations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::rc_per_ue >&
       ue_max_prb_allocations() const;
-  // @@protoc_insertion_point(class_scope:mypackage.MatrixRequest)
+  // repeated .oran.kpm_per_ue ue_kpb_metrics = 3;
+  int ue_kpb_metrics_size() const;
+  private:
+  int _internal_ue_kpb_metrics_size() const;
+
+  public:
+  void clear_ue_kpb_metrics() ;
+  ::oran::kpm_per_ue* mutable_ue_kpb_metrics(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::kpm_per_ue >*
+      mutable_ue_kpb_metrics();
+  private:
+  const ::oran::kpm_per_ue& _internal_ue_kpb_metrics(int index) const;
+  ::oran::kpm_per_ue* _internal_add_ue_kpb_metrics();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::oran::kpm_per_ue>& _internal_ue_kpb_metrics() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::oran::kpm_per_ue>* _internal_mutable_ue_kpb_metrics();
+  public:
+  const ::oran::kpm_per_ue& ue_kpb_metrics(int index) const;
+  ::oran::kpm_per_ue* add_ue_kpb_metrics();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::kpm_per_ue >&
+      ue_kpb_metrics() const;
+  // int32 type = 1;
+  void clear_type() ;
+  ::int32_t type() const;
+  void set_type(::int32_t value);
+
+  private:
+  ::int32_t _internal_type() const;
+  void _internal_set_type(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:oran.service_message)
  private:
   class _Internal;
 
@@ -716,31 +267,34 @@ class MatrixRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mypackage::UeMaxPrbAllocation > ue_max_prb_allocations_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::rc_per_ue > ue_max_prb_allocations_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::kpm_per_ue > ue_kpb_metrics_;
+    ::int32_t type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_e2_5fand_5fo1_2eproto;
 };// -------------------------------------------------------------------
 
-class MatrixResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mypackage.MatrixResponse) */ {
+class rc_per_ue final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:oran.rc_per_ue) */ {
  public:
-  inline MatrixResponse() : MatrixResponse(nullptr) {}
+  inline rc_per_ue() : rc_per_ue(nullptr) {}
+  ~rc_per_ue() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MatrixResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR rc_per_ue(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  MatrixResponse(const MatrixResponse& from);
-  MatrixResponse(MatrixResponse&& from) noexcept
-    : MatrixResponse() {
+  rc_per_ue(const rc_per_ue& from);
+  rc_per_ue(rc_per_ue&& from) noexcept
+    : rc_per_ue() {
     *this = ::std::move(from);
   }
 
-  inline MatrixResponse& operator=(const MatrixResponse& from) {
+  inline rc_per_ue& operator=(const rc_per_ue& from) {
     CopyFrom(from);
     return *this;
   }
-  inline MatrixResponse& operator=(MatrixResponse&& from) noexcept {
+  inline rc_per_ue& operator=(rc_per_ue&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -770,20 +324,20 @@ class MatrixResponse final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const MatrixResponse& default_instance() {
+  static const rc_per_ue& default_instance() {
     return *internal_default_instance();
   }
-  static inline const MatrixResponse* internal_default_instance() {
-    return reinterpret_cast<const MatrixResponse*>(
-               &_MatrixResponse_default_instance_);
+  static inline const rc_per_ue* internal_default_instance() {
+    return reinterpret_cast<const rc_per_ue*>(
+               &_rc_per_ue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    1;
 
-  friend void swap(MatrixResponse& a, MatrixResponse& b) {
+  friend void swap(rc_per_ue& a, rc_per_ue& b) {
     a.Swap(&b);
   }
-  inline void Swap(MatrixResponse* other) {
+  inline void Swap(rc_per_ue* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -796,7 +350,7 @@ class MatrixResponse final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(MatrixResponse* other) {
+  void UnsafeArenaSwap(rc_per_ue* other) {
     if (other == this) return;
     ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -804,26 +358,40 @@ class MatrixResponse final :
 
   // implements Message ----------------------------------------------
 
-  MatrixResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MatrixResponse>(arena);
+  rc_per_ue* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<rc_per_ue>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const MatrixResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const rc_per_ue& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const rc_per_ue& from) {
+    rc_per_ue::MergeImpl(*this, from);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const MatrixResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(rc_per_ue* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mypackage.MatrixResponse";
+    return "oran.rc_per_ue";
   }
   protected:
-  explicit MatrixResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit rc_per_ue(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   public:
 
   static const ClassData _class_data_;
@@ -835,7 +403,31 @@ class MatrixResponse final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mypackage.MatrixResponse)
+  enum : int {
+    kUeIndexFieldNumber = 1,
+    kMaxPrbFieldNumber = 2,
+  };
+  // int32 ue_index = 1;
+  void clear_ue_index() ;
+  ::int32_t ue_index() const;
+  void set_ue_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_ue_index() const;
+  void _internal_set_ue_index(::int32_t value);
+
+  public:
+  // int32 max_prb = 2;
+  void clear_max_prb() ;
+  ::int32_t max_prb() const;
+  void set_max_prb(::int32_t value);
+
+  private:
+  ::int32_t _internal_max_prb() const;
+  void _internal_set_max_prb(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:oran.rc_per_ue)
  private:
   class _Internal;
 
@@ -843,7 +435,190 @@ class MatrixResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::int32_t ue_index_;
+    ::int32_t max_prb_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_e2_5fand_5fo1_2eproto;
+};// -------------------------------------------------------------------
+
+class kpm_per_ue final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:oran.kpm_per_ue) */ {
+ public:
+  inline kpm_per_ue() : kpm_per_ue(nullptr) {}
+  ~kpm_per_ue() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR kpm_per_ue(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  kpm_per_ue(const kpm_per_ue& from);
+  kpm_per_ue(kpm_per_ue&& from) noexcept
+    : kpm_per_ue() {
+    *this = ::std::move(from);
+  }
+
+  inline kpm_per_ue& operator=(const kpm_per_ue& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline kpm_per_ue& operator=(kpm_per_ue&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const kpm_per_ue& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const kpm_per_ue* internal_default_instance() {
+    return reinterpret_cast<const kpm_per_ue*>(
+               &_kpm_per_ue_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(kpm_per_ue& a, kpm_per_ue& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(kpm_per_ue* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(kpm_per_ue* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  kpm_per_ue* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<kpm_per_ue>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const kpm_per_ue& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const kpm_per_ue& from) {
+    kpm_per_ue::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(kpm_per_ue* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "oran.kpm_per_ue";
+  }
+  protected:
+  explicit kpm_per_ue(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPktDropRateFieldNumber = 2,
+    kPktVolumeFieldNumber = 3,
+    kUeIndexFieldNumber = 1,
+  };
+  // double pkt_drop_rate = 2;
+  void clear_pkt_drop_rate() ;
+  double pkt_drop_rate() const;
+  void set_pkt_drop_rate(double value);
+
+  private:
+  double _internal_pkt_drop_rate() const;
+  void _internal_set_pkt_drop_rate(double value);
+
+  public:
+  // double pkt_volume = 3;
+  void clear_pkt_volume() ;
+  double pkt_volume() const;
+  void set_pkt_volume(double value);
+
+  private:
+  double _internal_pkt_volume() const;
+  void _internal_set_pkt_volume(double value);
+
+  public:
+  // int32 ue_index = 1;
+  void clear_ue_index() ;
+  ::int32_t ue_index() const;
+  void set_ue_index(::int32_t value);
+
+  private:
+  ::int32_t _internal_ue_index() const;
+  void _internal_set_ue_index(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:oran.kpm_per_ue)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    double pkt_drop_rate_;
+    double pkt_volume_;
+    ::int32_t ue_index_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_e2_5fand_5fo1_2eproto;
 };
 
@@ -861,178 +636,238 @@ class MatrixResponse final :
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// StreamRequest
+// service_message
 
-// -------------------------------------------------------------------
-
-// StreamResponse
-
-// int32 ue_index = 1;
-inline void StreamResponse::clear_ue_index() {
-  _impl_.ue_index_ = 0;
+// int32 type = 1;
+inline void service_message::clear_type() {
+  _impl_.type_ = 0;
 }
-inline ::int32_t StreamResponse::ue_index() const {
-  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.ue_index)
-  return _internal_ue_index();
+inline ::int32_t service_message::type() const {
+  // @@protoc_insertion_point(field_get:oran.service_message.type)
+  return _internal_type();
 }
-inline void StreamResponse::set_ue_index(::int32_t value) {
-  _internal_set_ue_index(value);
-  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.ue_index)
+inline void service_message::set_type(::int32_t value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:oran.service_message.type)
 }
-inline ::int32_t StreamResponse::_internal_ue_index() const {
-  return _impl_.ue_index_;
+inline ::int32_t service_message::_internal_type() const {
+  return _impl_.type_;
 }
-inline void StreamResponse::_internal_set_ue_index(::int32_t value) {
+inline void service_message::_internal_set_type(::int32_t value) {
   ;
-  _impl_.ue_index_ = value;
+  _impl_.type_ = value;
 }
 
-// double pkt_drop = 2;
-inline void StreamResponse::clear_pkt_drop() {
-  _impl_.pkt_drop_ = 0;
-}
-inline double StreamResponse::pkt_drop() const {
-  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.pkt_drop)
-  return _internal_pkt_drop();
-}
-inline void StreamResponse::set_pkt_drop(double value) {
-  _internal_set_pkt_drop(value);
-  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.pkt_drop)
-}
-inline double StreamResponse::_internal_pkt_drop() const {
-  return _impl_.pkt_drop_;
-}
-inline void StreamResponse::_internal_set_pkt_drop(double value) {
-  ;
-  _impl_.pkt_drop_ = value;
-}
-
-// int32 pkt_volume = 3;
-inline void StreamResponse::clear_pkt_volume() {
-  _impl_.pkt_volume_ = 0;
-}
-inline ::int32_t StreamResponse::pkt_volume() const {
-  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.pkt_volume)
-  return _internal_pkt_volume();
-}
-inline void StreamResponse::set_pkt_volume(::int32_t value) {
-  _internal_set_pkt_volume(value);
-  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.pkt_volume)
-}
-inline ::int32_t StreamResponse::_internal_pkt_volume() const {
-  return _impl_.pkt_volume_;
-}
-inline void StreamResponse::_internal_set_pkt_volume(::int32_t value) {
-  ;
-  _impl_.pkt_volume_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// UeMaxPrbAllocation
-
-// int32 ue_index = 1;
-inline void UeMaxPrbAllocation::clear_ue_index() {
-  _impl_.ue_index_ = 0;
-}
-inline ::int32_t UeMaxPrbAllocation::ue_index() const {
-  // @@protoc_insertion_point(field_get:mypackage.UeMaxPrbAllocation.ue_index)
-  return _internal_ue_index();
-}
-inline void UeMaxPrbAllocation::set_ue_index(::int32_t value) {
-  _internal_set_ue_index(value);
-  // @@protoc_insertion_point(field_set:mypackage.UeMaxPrbAllocation.ue_index)
-}
-inline ::int32_t UeMaxPrbAllocation::_internal_ue_index() const {
-  return _impl_.ue_index_;
-}
-inline void UeMaxPrbAllocation::_internal_set_ue_index(::int32_t value) {
-  ;
-  _impl_.ue_index_ = value;
-}
-
-// double max_prb_allocation = 2;
-inline void UeMaxPrbAllocation::clear_max_prb_allocation() {
-  _impl_.max_prb_allocation_ = 0;
-}
-inline double UeMaxPrbAllocation::max_prb_allocation() const {
-  // @@protoc_insertion_point(field_get:mypackage.UeMaxPrbAllocation.max_prb_allocation)
-  return _internal_max_prb_allocation();
-}
-inline void UeMaxPrbAllocation::set_max_prb_allocation(double value) {
-  _internal_set_max_prb_allocation(value);
-  // @@protoc_insertion_point(field_set:mypackage.UeMaxPrbAllocation.max_prb_allocation)
-}
-inline double UeMaxPrbAllocation::_internal_max_prb_allocation() const {
-  return _impl_.max_prb_allocation_;
-}
-inline void UeMaxPrbAllocation::_internal_set_max_prb_allocation(double value) {
-  ;
-  _impl_.max_prb_allocation_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// MatrixRequest
-
-// repeated .mypackage.UeMaxPrbAllocation ue_max_prb_allocations = 1;
-inline int MatrixRequest::_internal_ue_max_prb_allocations_size() const {
+// repeated .oran.rc_per_ue ue_max_prb_allocations = 2;
+inline int service_message::_internal_ue_max_prb_allocations_size() const {
   return _impl_.ue_max_prb_allocations_.size();
 }
-inline int MatrixRequest::ue_max_prb_allocations_size() const {
+inline int service_message::ue_max_prb_allocations_size() const {
   return _internal_ue_max_prb_allocations_size();
 }
-inline void MatrixRequest::clear_ue_max_prb_allocations() {
+inline void service_message::clear_ue_max_prb_allocations() {
   _internal_mutable_ue_max_prb_allocations()->Clear();
 }
-inline ::mypackage::UeMaxPrbAllocation* MatrixRequest::mutable_ue_max_prb_allocations(int index) {
-  // @@protoc_insertion_point(field_mutable:mypackage.MatrixRequest.ue_max_prb_allocations)
+inline ::oran::rc_per_ue* service_message::mutable_ue_max_prb_allocations(int index) {
+  // @@protoc_insertion_point(field_mutable:oran.service_message.ue_max_prb_allocations)
   return _internal_mutable_ue_max_prb_allocations()->Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mypackage::UeMaxPrbAllocation >*
-MatrixRequest::mutable_ue_max_prb_allocations() {
-  // @@protoc_insertion_point(field_mutable_list:mypackage.MatrixRequest.ue_max_prb_allocations)
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::rc_per_ue >*
+service_message::mutable_ue_max_prb_allocations() {
+  // @@protoc_insertion_point(field_mutable_list:oran.service_message.ue_max_prb_allocations)
   return _internal_mutable_ue_max_prb_allocations();
 }
-inline const ::mypackage::UeMaxPrbAllocation& MatrixRequest::_internal_ue_max_prb_allocations(int index) const {
+inline const ::oran::rc_per_ue& service_message::_internal_ue_max_prb_allocations(int index) const {
   return _internal_ue_max_prb_allocations().Get(index);
 }
-inline const ::mypackage::UeMaxPrbAllocation& MatrixRequest::ue_max_prb_allocations(int index) const {
-  // @@protoc_insertion_point(field_get:mypackage.MatrixRequest.ue_max_prb_allocations)
+inline const ::oran::rc_per_ue& service_message::ue_max_prb_allocations(int index) const {
+  // @@protoc_insertion_point(field_get:oran.service_message.ue_max_prb_allocations)
   return _internal_ue_max_prb_allocations(index);
 }
-inline ::mypackage::UeMaxPrbAllocation* MatrixRequest::_internal_add_ue_max_prb_allocations() {
+inline ::oran::rc_per_ue* service_message::_internal_add_ue_max_prb_allocations() {
   return _internal_mutable_ue_max_prb_allocations()->Add();
 }
-inline ::mypackage::UeMaxPrbAllocation* MatrixRequest::add_ue_max_prb_allocations() {
-  ::mypackage::UeMaxPrbAllocation* _add = _internal_add_ue_max_prb_allocations();
-  // @@protoc_insertion_point(field_add:mypackage.MatrixRequest.ue_max_prb_allocations)
+inline ::oran::rc_per_ue* service_message::add_ue_max_prb_allocations() {
+  ::oran::rc_per_ue* _add = _internal_add_ue_max_prb_allocations();
+  // @@protoc_insertion_point(field_add:oran.service_message.ue_max_prb_allocations)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::mypackage::UeMaxPrbAllocation >&
-MatrixRequest::ue_max_prb_allocations() const {
-  // @@protoc_insertion_point(field_list:mypackage.MatrixRequest.ue_max_prb_allocations)
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::rc_per_ue >&
+service_message::ue_max_prb_allocations() const {
+  // @@protoc_insertion_point(field_list:oran.service_message.ue_max_prb_allocations)
   return _internal_ue_max_prb_allocations();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::mypackage::UeMaxPrbAllocation>&
-MatrixRequest::_internal_ue_max_prb_allocations() const {
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::oran::rc_per_ue>&
+service_message::_internal_ue_max_prb_allocations() const {
   return _impl_.ue_max_prb_allocations_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::mypackage::UeMaxPrbAllocation>*
-MatrixRequest::_internal_mutable_ue_max_prb_allocations() {
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::oran::rc_per_ue>*
+service_message::_internal_mutable_ue_max_prb_allocations() {
   return &_impl_.ue_max_prb_allocations_;
 }
 
+// repeated .oran.kpm_per_ue ue_kpb_metrics = 3;
+inline int service_message::_internal_ue_kpb_metrics_size() const {
+  return _impl_.ue_kpb_metrics_.size();
+}
+inline int service_message::ue_kpb_metrics_size() const {
+  return _internal_ue_kpb_metrics_size();
+}
+inline void service_message::clear_ue_kpb_metrics() {
+  _internal_mutable_ue_kpb_metrics()->Clear();
+}
+inline ::oran::kpm_per_ue* service_message::mutable_ue_kpb_metrics(int index) {
+  // @@protoc_insertion_point(field_mutable:oran.service_message.ue_kpb_metrics)
+  return _internal_mutable_ue_kpb_metrics()->Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::kpm_per_ue >*
+service_message::mutable_ue_kpb_metrics() {
+  // @@protoc_insertion_point(field_mutable_list:oran.service_message.ue_kpb_metrics)
+  return _internal_mutable_ue_kpb_metrics();
+}
+inline const ::oran::kpm_per_ue& service_message::_internal_ue_kpb_metrics(int index) const {
+  return _internal_ue_kpb_metrics().Get(index);
+}
+inline const ::oran::kpm_per_ue& service_message::ue_kpb_metrics(int index) const {
+  // @@protoc_insertion_point(field_get:oran.service_message.ue_kpb_metrics)
+  return _internal_ue_kpb_metrics(index);
+}
+inline ::oran::kpm_per_ue* service_message::_internal_add_ue_kpb_metrics() {
+  return _internal_mutable_ue_kpb_metrics()->Add();
+}
+inline ::oran::kpm_per_ue* service_message::add_ue_kpb_metrics() {
+  ::oran::kpm_per_ue* _add = _internal_add_ue_kpb_metrics();
+  // @@protoc_insertion_point(field_add:oran.service_message.ue_kpb_metrics)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::oran::kpm_per_ue >&
+service_message::ue_kpb_metrics() const {
+  // @@protoc_insertion_point(field_list:oran.service_message.ue_kpb_metrics)
+  return _internal_ue_kpb_metrics();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::oran::kpm_per_ue>&
+service_message::_internal_ue_kpb_metrics() const {
+  return _impl_.ue_kpb_metrics_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::oran::kpm_per_ue>*
+service_message::_internal_mutable_ue_kpb_metrics() {
+  return &_impl_.ue_kpb_metrics_;
+}
+
 // -------------------------------------------------------------------
 
-// MatrixResponse
+// rc_per_ue
+
+// int32 ue_index = 1;
+inline void rc_per_ue::clear_ue_index() {
+  _impl_.ue_index_ = 0;
+}
+inline ::int32_t rc_per_ue::ue_index() const {
+  // @@protoc_insertion_point(field_get:oran.rc_per_ue.ue_index)
+  return _internal_ue_index();
+}
+inline void rc_per_ue::set_ue_index(::int32_t value) {
+  _internal_set_ue_index(value);
+  // @@protoc_insertion_point(field_set:oran.rc_per_ue.ue_index)
+}
+inline ::int32_t rc_per_ue::_internal_ue_index() const {
+  return _impl_.ue_index_;
+}
+inline void rc_per_ue::_internal_set_ue_index(::int32_t value) {
+  ;
+  _impl_.ue_index_ = value;
+}
+
+// int32 max_prb = 2;
+inline void rc_per_ue::clear_max_prb() {
+  _impl_.max_prb_ = 0;
+}
+inline ::int32_t rc_per_ue::max_prb() const {
+  // @@protoc_insertion_point(field_get:oran.rc_per_ue.max_prb)
+  return _internal_max_prb();
+}
+inline void rc_per_ue::set_max_prb(::int32_t value) {
+  _internal_set_max_prb(value);
+  // @@protoc_insertion_point(field_set:oran.rc_per_ue.max_prb)
+}
+inline ::int32_t rc_per_ue::_internal_max_prb() const {
+  return _impl_.max_prb_;
+}
+inline void rc_per_ue::_internal_set_max_prb(::int32_t value) {
+  ;
+  _impl_.max_prb_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// kpm_per_ue
+
+// int32 ue_index = 1;
+inline void kpm_per_ue::clear_ue_index() {
+  _impl_.ue_index_ = 0;
+}
+inline ::int32_t kpm_per_ue::ue_index() const {
+  // @@protoc_insertion_point(field_get:oran.kpm_per_ue.ue_index)
+  return _internal_ue_index();
+}
+inline void kpm_per_ue::set_ue_index(::int32_t value) {
+  _internal_set_ue_index(value);
+  // @@protoc_insertion_point(field_set:oran.kpm_per_ue.ue_index)
+}
+inline ::int32_t kpm_per_ue::_internal_ue_index() const {
+  return _impl_.ue_index_;
+}
+inline void kpm_per_ue::_internal_set_ue_index(::int32_t value) {
+  ;
+  _impl_.ue_index_ = value;
+}
+
+// double pkt_drop_rate = 2;
+inline void kpm_per_ue::clear_pkt_drop_rate() {
+  _impl_.pkt_drop_rate_ = 0;
+}
+inline double kpm_per_ue::pkt_drop_rate() const {
+  // @@protoc_insertion_point(field_get:oran.kpm_per_ue.pkt_drop_rate)
+  return _internal_pkt_drop_rate();
+}
+inline void kpm_per_ue::set_pkt_drop_rate(double value) {
+  _internal_set_pkt_drop_rate(value);
+  // @@protoc_insertion_point(field_set:oran.kpm_per_ue.pkt_drop_rate)
+}
+inline double kpm_per_ue::_internal_pkt_drop_rate() const {
+  return _impl_.pkt_drop_rate_;
+}
+inline void kpm_per_ue::_internal_set_pkt_drop_rate(double value) {
+  ;
+  _impl_.pkt_drop_rate_ = value;
+}
+
+// double pkt_volume = 3;
+inline void kpm_per_ue::clear_pkt_volume() {
+  _impl_.pkt_volume_ = 0;
+}
+inline double kpm_per_ue::pkt_volume() const {
+  // @@protoc_insertion_point(field_get:oran.kpm_per_ue.pkt_volume)
+  return _internal_pkt_volume();
+}
+inline void kpm_per_ue::set_pkt_volume(double value) {
+  _internal_set_pkt_volume(value);
+  // @@protoc_insertion_point(field_set:oran.kpm_per_ue.pkt_volume)
+}
+inline double kpm_per_ue::_internal_pkt_volume() const {
+  return _impl_.pkt_volume_;
+}
+inline void kpm_per_ue::_internal_set_pkt_volume(double value) {
+  ;
+  _impl_.pkt_volume_ = value;
+}
 
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace mypackage
+}  // namespace oran
 
 
 // @@protoc_insertion_point(global_scope)

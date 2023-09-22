@@ -31,6 +31,7 @@
 #include "srsran/mac/mac.h"
 #include "srsran/rlc/rlc_metrics.h"
 #include "srsran/scheduler/config/scheduler_expert_config.h"
+#include "../../../apps/gnb/helpers/metrics_hub.h"
 #include <map>
 
 namespace srsran {
@@ -66,6 +67,7 @@ struct du_manager_params {
     f1ap_message_handler&                        f1ap_rx_msg_handler;
     f1ap_rrc_message_transfer_procedure_handler& f1ap_rx_proc_handler;
     rlc_metrics_notifier*                        rlc_metrics_notif = nullptr;
+    rlc_metrics_source*                          rlc_metrics_src = nullptr;
   };
   struct mac_config_params {
     mac_cell_manager&       cell_mng;

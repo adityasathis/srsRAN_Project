@@ -16,6 +16,7 @@
 #include "srsran/rlc/rlc_metrics.h"
 #include "srsran/scheduler/config/scheduler_expert_config.h"
 #include "srsran/scheduler/scheduler_metrics.h"
+#include "../../../apps/gnb/helpers/metrics_hub.h"
 #include <map>
 
 namespace srsran {
@@ -35,6 +36,7 @@ struct du_high_configuration {
   timer_manager*                     timers                    = nullptr;
   scheduler_ue_metrics_notifier*     sched_ue_metrics_notifier = nullptr;
   rlc_metrics_notifier*              rlc_metrics_notif         = nullptr;
+  rlc_metrics_source*                rlc_metrics_src        = nullptr;
   e2_connection_client*              e2_client                 = nullptr;
   e2_du_metrics_interface*           e2_du_metric_iface        = nullptr;
   std::string                        gnb_du_name;

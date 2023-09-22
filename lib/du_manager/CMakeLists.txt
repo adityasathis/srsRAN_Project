@@ -26,8 +26,8 @@ add_subdirectory(procedures)
 set(SOURCES du_manager_factory.cpp
             du_manager_impl.cpp
             du_ue/du_ue_manager.cpp
+            ../../apps/gnb/helpers/metrics_hub.cpp
             du_cell_manager.cpp
-            ../grpc/e2_and_o1.grpc.pb.cc
             ../grpc/e2_and_o1.pb.cc)
 
 add_library(srsran_du_manager STATIC ${SOURCES})
@@ -42,13 +42,12 @@ target_link_libraries(srsran_du_manager
                       srsran_gtpu)
 
 # Find gRPC
-find_package(gRPC REQUIRED)
-if (gRPC_FOUND)
-    message(STATUS "Found gRPC")
+find_package(Protobuf REQUIRED)
+if (Protobuf_FOUND)
     include_directories(../grpc)
     
     # Link gRPC libraries to your target
-    target_link_libraries(srsran_du_manager gRPC::grpc++)
+    target_link_libraries(srsran_du_manager ${PROTOBUF_LIBRARIES})
 else(gRPC_FOUND)
     message(FATAL_ERROR "Could not find gRPC")
 endif(gRPC_FOUND)

@@ -171,6 +171,12 @@ std::vector<std::unique_ptr<du>> srsran::make_gnb_dus(const gnb_appconfig&      
       metrics_hub.add_source(std::move(source));
       // Pass RLC metric source to the DU high.
       du_hi_cfg.rlc_metrics_notif = metrics_hub.get_rlc_metrics_source(source_name);
+    } else {
+      std::string source_name = "rlc_metric_aggr_du_" + std::to_string(i);
+      auto        source      = std::make_unique<rlc_metrics_source>(source_name);
+      du_hi_cfg.rlc_metrics_src = source.get();
+      metrics_hub.add_source(std::move(source));
+      du_hi_cfg.rlc_metrics_notif = metrics_hub.get_rlc_metrics_source(source_name);
     }
     if (gnb_cfg.test_mode_cfg.test_ue.rnti != INVALID_RNTI) {
       du_hi_cfg.test_cfg.test_ue = srs_du::du_test_config::test_ue_config{gnb_cfg.test_mode_cfg.test_ue.rnti,
