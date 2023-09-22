@@ -1,5 +1,0 @@
-if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/asn1/asn1_ngap_test[1]_tests.cmake")
-  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/asn1/asn1_ngap_test[1]_tests.cmake")
-else()
-  add_test(asn1_ngap_test_NOT_BUILT asn1_ngap_test_NOT_BUILT)
-endif()

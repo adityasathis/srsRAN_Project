@@ -180,19 +180,6 @@ endif()
 # Find dependencies
 ########################################################################
 
-# gRPC
-find_package(Protobuf REQUIRED)
-find_package(gRPC REQUIRED VERSION 1.58.1)
-find_package(gRPC CONFIG REQUIRED)
-if (gRPC_FOUND)
-    message(STATUS "Found gRPC")
-    set(SEC_LIBRARIES gRPC::grpc++)
-    set(SEC_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/lib/grpc/e2_and_o1.grpc.pb.cc")
-    set(SEC_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/lib/grpc/e2_and_o1.pb.cc")
-else(gRPC_FOUND)
-    message(FATAL_ERROR "Could not find gRPC")
-endif(gRPC_FOUND)
-
 # Backward-cpp
 find_package(Backward)
 if(Backward_FOUND)
@@ -215,6 +202,19 @@ if (MBEDTLS_FOUND)
 else(MBEDTLS_FOUND)
     message(FATAL_ERROR "mbedTLS is required to build ${CMAKE_PROJECT_NAME}")
 endif (MBEDTLS_FOUND)
+
+# gRPC
+find_package(Protobuf REQUIRED)
+find_package(gRPC REQUIRED VERSION 1.58.1)
+find_package(gRPC CONFIG REQUIRED)
+if (gRPC_FOUND)
+    message(STATUS "Found gRPC")
+    set(GRPC_DIR ${PROJECT_SOURCE_DIR}/lib/grpc)
+    #include_directories(${PROJECT_SOURCE_DIR}/lib/grpc)
+    #include_directories(${PROJECT_SOURCE_DIR}/lib/grpc)
+else(gRPC_FOUND)
+    message(FATAL_ERROR "Could not find gRPC")
+endif(gRPC_FOUND)
 
 # FFTW
 if (ENABLE_FFTW)

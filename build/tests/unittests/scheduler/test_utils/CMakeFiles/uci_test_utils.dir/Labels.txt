@@ -1,4 +1,0 @@
-# Directory labels
- sched
-# Source files and their labels
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/scheduler/uci_and_pucch/uci_test_utils.cpp

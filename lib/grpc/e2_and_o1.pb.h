@@ -340,48 +340,38 @@ class StreamResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kVariable1FieldNumber = 1,
-    kVariable3FieldNumber = 3,
-    kVariable2FieldNumber = 2,
+    kPktDropFieldNumber = 2,
+    kUeIndexFieldNumber = 1,
+    kPktVolumeFieldNumber = 3,
   };
-  // string variable1 = 1;
-  void clear_variable1() ;
-  const std::string& variable1() const;
-
-
-
-
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_variable1(Arg_&& arg, Args_... args);
-  std::string* mutable_variable1();
-  PROTOBUF_NODISCARD std::string* release_variable1();
-  void set_allocated_variable1(std::string* ptr);
+  // double pkt_drop = 2;
+  void clear_pkt_drop() ;
+  double pkt_drop() const;
+  void set_pkt_drop(double value);
 
   private:
-  const std::string& _internal_variable1() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_variable1(
-      const std::string& value);
-  std::string* _internal_mutable_variable1();
+  double _internal_pkt_drop() const;
+  void _internal_set_pkt_drop(double value);
 
   public:
-  // double variable3 = 3;
-  void clear_variable3() ;
-  double variable3() const;
-  void set_variable3(double value);
+  // int32 ue_index = 1;
+  void clear_ue_index() ;
+  ::int32_t ue_index() const;
+  void set_ue_index(::int32_t value);
 
   private:
-  double _internal_variable3() const;
-  void _internal_set_variable3(double value);
+  ::int32_t _internal_ue_index() const;
+  void _internal_set_ue_index(::int32_t value);
 
   public:
-  // int32 variable2 = 2;
-  void clear_variable2() ;
-  ::int32_t variable2() const;
-  void set_variable2(::int32_t value);
+  // int32 pkt_volume = 3;
+  void clear_pkt_volume() ;
+  ::int32_t pkt_volume() const;
+  void set_pkt_volume(::int32_t value);
 
   private:
-  ::int32_t _internal_variable2() const;
-  void _internal_set_variable2(::int32_t value);
+  ::int32_t _internal_pkt_volume() const;
+  void _internal_set_pkt_volume(::int32_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:mypackage.StreamResponse)
@@ -392,9 +382,9 @@ class StreamResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr variable1_;
-    double variable3_;
-    ::int32_t variable2_;
+    double pkt_drop_;
+    ::int32_t ue_index_;
+    ::int32_t pkt_volume_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -877,91 +867,64 @@ class MatrixResponse final :
 
 // StreamResponse
 
-// string variable1 = 1;
-inline void StreamResponse::clear_variable1() {
-  _impl_.variable1_.ClearToEmpty();
+// int32 ue_index = 1;
+inline void StreamResponse::clear_ue_index() {
+  _impl_.ue_index_ = 0;
 }
-inline const std::string& StreamResponse::variable1() const {
-  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.variable1)
-  return _internal_variable1();
+inline ::int32_t StreamResponse::ue_index() const {
+  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.ue_index)
+  return _internal_ue_index();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void StreamResponse::set_variable1(Arg_&& arg,
-                                                     Args_... args) {
+inline void StreamResponse::set_ue_index(::int32_t value) {
+  _internal_set_ue_index(value);
+  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.ue_index)
+}
+inline ::int32_t StreamResponse::_internal_ue_index() const {
+  return _impl_.ue_index_;
+}
+inline void StreamResponse::_internal_set_ue_index(::int32_t value) {
   ;
-  _impl_.variable1_.Set(static_cast<Arg_&&>(arg), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.variable1)
-}
-inline std::string* StreamResponse::mutable_variable1() {
-  std::string* _s = _internal_mutable_variable1();
-  // @@protoc_insertion_point(field_mutable:mypackage.StreamResponse.variable1)
-  return _s;
-}
-inline const std::string& StreamResponse::_internal_variable1() const {
-  return _impl_.variable1_.Get();
-}
-inline void StreamResponse::_internal_set_variable1(const std::string& value) {
-  ;
-
-
-  _impl_.variable1_.Set(value, GetArenaForAllocation());
-}
-inline std::string* StreamResponse::_internal_mutable_variable1() {
-  ;
-  return _impl_.variable1_.Mutable( GetArenaForAllocation());
-}
-inline std::string* StreamResponse::release_variable1() {
-  // @@protoc_insertion_point(field_release:mypackage.StreamResponse.variable1)
-  return _impl_.variable1_.Release();
-}
-inline void StreamResponse::set_allocated_variable1(std::string* value) {
-  _impl_.variable1_.SetAllocated(value, GetArenaForAllocation());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.variable1_.IsDefault()) {
-          _impl_.variable1_.Set("", GetArenaForAllocation());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mypackage.StreamResponse.variable1)
+  _impl_.ue_index_ = value;
 }
 
-// int32 variable2 = 2;
-inline void StreamResponse::clear_variable2() {
-  _impl_.variable2_ = 0;
+// double pkt_drop = 2;
+inline void StreamResponse::clear_pkt_drop() {
+  _impl_.pkt_drop_ = 0;
 }
-inline ::int32_t StreamResponse::variable2() const {
-  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.variable2)
-  return _internal_variable2();
+inline double StreamResponse::pkt_drop() const {
+  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.pkt_drop)
+  return _internal_pkt_drop();
 }
-inline void StreamResponse::set_variable2(::int32_t value) {
-  _internal_set_variable2(value);
-  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.variable2)
+inline void StreamResponse::set_pkt_drop(double value) {
+  _internal_set_pkt_drop(value);
+  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.pkt_drop)
 }
-inline ::int32_t StreamResponse::_internal_variable2() const {
-  return _impl_.variable2_;
+inline double StreamResponse::_internal_pkt_drop() const {
+  return _impl_.pkt_drop_;
 }
-inline void StreamResponse::_internal_set_variable2(::int32_t value) {
+inline void StreamResponse::_internal_set_pkt_drop(double value) {
   ;
-  _impl_.variable2_ = value;
+  _impl_.pkt_drop_ = value;
 }
 
-// double variable3 = 3;
-inline void StreamResponse::clear_variable3() {
-  _impl_.variable3_ = 0;
+// int32 pkt_volume = 3;
+inline void StreamResponse::clear_pkt_volume() {
+  _impl_.pkt_volume_ = 0;
 }
-inline double StreamResponse::variable3() const {
-  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.variable3)
-  return _internal_variable3();
+inline ::int32_t StreamResponse::pkt_volume() const {
+  // @@protoc_insertion_point(field_get:mypackage.StreamResponse.pkt_volume)
+  return _internal_pkt_volume();
 }
-inline void StreamResponse::set_variable3(double value) {
-  _internal_set_variable3(value);
-  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.variable3)
+inline void StreamResponse::set_pkt_volume(::int32_t value) {
+  _internal_set_pkt_volume(value);
+  // @@protoc_insertion_point(field_set:mypackage.StreamResponse.pkt_volume)
 }
-inline double StreamResponse::_internal_variable3() const {
-  return _impl_.variable3_;
+inline ::int32_t StreamResponse::_internal_pkt_volume() const {
+  return _impl_.pkt_volume_;
 }
-inline void StreamResponse::_internal_set_variable3(double value) {
+inline void StreamResponse::_internal_set_pkt_volume(::int32_t value) {
   ;
-  _impl_.variable3_ = value;
+  _impl_.pkt_volume_ = value;
 }
 
 // -------------------------------------------------------------------

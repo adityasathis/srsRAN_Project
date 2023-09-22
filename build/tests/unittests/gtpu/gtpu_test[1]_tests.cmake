@@ -1,7 +1,0 @@
-add_test( gtpu_test.read_teid /home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/gtpu/gtpu_test [==[--gtest_filter=gtpu_test.read_teid]==] --gtest_also_run_disabled_tests)
-set_tests_properties( gtpu_test.read_teid PROPERTIES WORKING_DIRECTORY /home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/gtpu SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-add_test( gtpu_test.pack_unpack /home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/gtpu/gtpu_test [==[--gtest_filter=gtpu_test.pack_unpack]==] --gtest_also_run_disabled_tests)
-set_tests_properties( gtpu_test.pack_unpack PROPERTIES WORKING_DIRECTORY /home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/gtpu SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-add_test( gtpu_test.pack_unpack_ext_hdr /home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/gtpu/gtpu_test [==[--gtest_filter=gtpu_test.pack_unpack_ext_hdr]==] --gtest_also_run_disabled_tests)
-set_tests_properties( gtpu_test.pack_unpack_ext_hdr PROPERTIES WORKING_DIRECTORY /home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/gtpu SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set( gtpu_test_TESTS gtpu_test.read_teid gtpu_test.pack_unpack gtpu_test.pack_unpack_ext_hdr)

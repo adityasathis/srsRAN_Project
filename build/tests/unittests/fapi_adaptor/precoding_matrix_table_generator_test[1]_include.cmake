@@ -1,5 +1,0 @@
-if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi_adaptor/precoding_matrix_table_generator_test[1]_tests.cmake")
-  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi_adaptor/precoding_matrix_table_generator_test[1]_tests.cmake")
-else()
-  add_test(precoding_matrix_table_generator_test_NOT_BUILT precoding_matrix_table_generator_test_NOT_BUILT)
-endif()

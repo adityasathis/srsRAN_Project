@@ -1,8 +1,0 @@
-# Directory labels
- mac
-# Source files and their labels
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/mac/mac_dl_cfg_test.cpp
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/mac/mac_dl_ue_manager_test.cpp
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/mac/mac_cell_processor_test.cpp
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/mac/dl_sch_pdu_assembler_test.cpp
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/mac/mac_rar_pdu_assembler_test.cpp

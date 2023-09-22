@@ -1,5 +1,0 @@
-if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/cu_cp/up_resource_manager/up_resource_manager_test[1]_tests.cmake")
-  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/cu_cp/up_resource_manager/up_resource_manager_test[1]_tests.cmake")
-else()
-  add_test(up_resource_manager_test_NOT_BUILT up_resource_manager_test_NOT_BUILT)
-endif()

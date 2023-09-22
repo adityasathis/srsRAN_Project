@@ -1,5 +1,0 @@
-if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/psup/psup_packing_test[1]_tests.cmake")
-  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/psup/psup_packing_test[1]_tests.cmake")
-else()
-  add_test(psup_packing_test_NOT_BUILT psup_packing_test_NOT_BUILT)
-endif()

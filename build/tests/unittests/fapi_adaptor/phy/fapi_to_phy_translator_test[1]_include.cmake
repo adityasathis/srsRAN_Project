@@ -1,5 +1,0 @@
-if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi_adaptor/phy/fapi_to_phy_translator_test[1]_tests.cmake")
-  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi_adaptor/phy/fapi_to_phy_translator_test[1]_tests.cmake")
-else()
-  add_test(fapi_to_phy_translator_test_NOT_BUILT fapi_to_phy_translator_test_NOT_BUILT)
-endif()

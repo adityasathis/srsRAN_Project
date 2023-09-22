@@ -1,5 +1,0 @@
-if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/e2/e2sm_kpm_meas_provider_test[1]_tests.cmake")
-  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/e2/e2sm_kpm_meas_provider_test[1]_tests.cmake")
-else()
-  add_test(e2sm_kpm_meas_provider_test_NOT_BUILT e2sm_kpm_meas_provider_test_NOT_BUILT)
-endif()

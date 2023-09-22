@@ -1,4 +1,0 @@
-# Directory labels
- rlc
-# Source files and their labels
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/rlc/rlc_retx_queue_test.cpp

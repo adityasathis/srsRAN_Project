@@ -35,13 +35,11 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 template <typename>
 PROTOBUF_CONSTEXPR StreamResponse::StreamResponse(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.variable1_)*/ {
-    &::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized {}
-  }
+    /*decltype(_impl_.pkt_drop_)*/ 0
 
-  , /*decltype(_impl_.variable3_)*/ 0
+  , /*decltype(_impl_.ue_index_)*/ 0
 
-  , /*decltype(_impl_.variable2_)*/ 0
+  , /*decltype(_impl_.pkt_volume_)*/ 0
 
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamResponseDefaultTypeInternal {
@@ -124,9 +122,9 @@ const ::uint32_t TableStruct_e2_5fand_5fo1_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.variable1_),
-    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.variable2_),
-    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.variable3_),
+    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.ue_index_),
+    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.pkt_drop_),
+    PROTOBUF_FIELD_OFFSET(::mypackage::StreamResponse, _impl_.pkt_volume_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::mypackage::UeMaxPrbAllocation, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -174,23 +172,23 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_e2_5fand_5fo1_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\017e2_and_o1.proto\022\tmypackage\"\017\n\rStreamRe"
-    "quest\"I\n\016StreamResponse\022\021\n\tvariable1\030\001 \001"
-    "(\t\022\021\n\tvariable2\030\002 \001(\005\022\021\n\tvariable3\030\003 \001(\001"
-    "\"B\n\022UeMaxPrbAllocation\022\020\n\010ue_index\030\001 \001(\005"
-    "\022\032\n\022max_prb_allocation\030\002 \001(\001\"N\n\rMatrixRe"
-    "quest\022=\n\026ue_max_prb_allocations\030\001 \003(\0132\035."
-    "mypackage.UeMaxPrbAllocation\"\020\n\016MatrixRe"
-    "sponse2\241\001\n\tMyService\022M\n\024ServerToClientSt"
-    "ream\022\030.mypackage.StreamRequest\032\031.mypacka"
-    "ge.StreamResponse0\001\022E\n\016ClientToServer\022\030."
-    "mypackage.MatrixRequest\032\031.mypackage.Matr"
-    "ixResponseb\006proto3"
+    "quest\"H\n\016StreamResponse\022\020\n\010ue_index\030\001 \001("
+    "\005\022\020\n\010pkt_drop\030\002 \001(\001\022\022\n\npkt_volume\030\003 \001(\005\""
+    "B\n\022UeMaxPrbAllocation\022\020\n\010ue_index\030\001 \001(\005\022"
+    "\032\n\022max_prb_allocation\030\002 \001(\001\"N\n\rMatrixReq"
+    "uest\022=\n\026ue_max_prb_allocations\030\001 \003(\0132\035.m"
+    "ypackage.UeMaxPrbAllocation\"\020\n\016MatrixRes"
+    "ponse2\241\001\n\tMyService\022M\n\024ServerToClientStr"
+    "eam\022\030.mypackage.StreamRequest\032\031.mypackag"
+    "e.StreamResponse0\001\022E\n\016ClientToServer\022\030.m"
+    "ypackage.MatrixRequest\032\031.mypackage.Matri"
+    "xResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_e2_5fand_5fo1_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_e2_5fand_5fo1_2eproto = {
     false,
     false,
-    458,
+    457,
     descriptor_table_protodef_e2_5fand_5fo1_2eproto,
     "e2_and_o1.proto",
     &descriptor_table_e2_5fand_5fo1_2eproto_once,
@@ -273,46 +271,23 @@ StreamResponse::StreamResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   // @@protoc_insertion_point(arena_constructor:mypackage.StreamResponse)
 }
 StreamResponse::StreamResponse(const StreamResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  StreamResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.variable1_) {}
-
-    , decltype(_impl_.variable3_) {}
-
-    , decltype(_impl_.variable2_) {}
-
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.variable1_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.variable1_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_variable1().empty()) {
-    _this->_impl_.variable1_.Set(from._internal_variable1(), _this->GetArenaForAllocation());
-  }
-  ::memcpy(&_impl_.variable3_, &from._impl_.variable3_,
-    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.variable2_) -
-    reinterpret_cast<char*>(&_impl_.variable3_)) + sizeof(_impl_.variable2_));
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
+      from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:mypackage.StreamResponse)
 }
 
 inline void StreamResponse::SharedCtor(::_pb::Arena* arena) {
   (void)arena;
   new (&_impl_) Impl_{
-      decltype(_impl_.variable1_) {}
+      decltype(_impl_.pkt_drop_) { 0 }
 
-    , decltype(_impl_.variable3_) { 0 }
+    , decltype(_impl_.ue_index_) { 0 }
 
-    , decltype(_impl_.variable2_) { 0 }
+    , decltype(_impl_.pkt_volume_) { 0 }
 
     , /*decltype(_impl_._cached_size_)*/{}
   };
-  _impl_.variable1_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        _impl_.variable1_.Set("", GetArenaForAllocation());
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StreamResponse::~StreamResponse() {
@@ -326,7 +301,6 @@ StreamResponse::~StreamResponse() {
 
 inline void StreamResponse::SharedDtor() {
   ABSL_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.variable1_.Destroy();
 }
 
 void StreamResponse::SetCachedSize(int size) const {
@@ -339,10 +313,9 @@ void StreamResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.variable1_.ClearToEmpty();
-  ::memset(&_impl_.variable3_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.variable2_) -
-      reinterpret_cast<char*>(&_impl_.variable3_)) + sizeof(_impl_.variable2_));
+  ::memset(&_impl_.pkt_drop_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.pkt_volume_) -
+      reinterpret_cast<char*>(&_impl_.pkt_drop_)) + sizeof(_impl_.pkt_volume_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -352,31 +325,29 @@ const char* StreamResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext
     ::uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string variable1 = 1;
+      // int32 ue_index = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_variable1();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 8)) {
+          _impl_.ue_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "mypackage.StreamResponse.variable1"));
         } else {
           goto handle_unusual;
         }
         continue;
-      // int32 variable2 = 2;
+      // double pkt_drop = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 16)) {
-          _impl_.variable2_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 17)) {
+          _impl_.pkt_drop_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else {
           goto handle_unusual;
         }
         continue;
-      // double variable3 = 3;
+      // int32 pkt_volume = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 25)) {
-          _impl_.variable3_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::uint8_t>(tag) == 24)) {
+          _impl_.pkt_volume_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
         } else {
           goto handle_unusual;
         }
@@ -410,30 +381,29 @@ failure:
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string variable1 = 1;
-  if (!this->_internal_variable1().empty()) {
-    const std::string& _s = this->_internal_variable1();
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE, "mypackage.StreamResponse.variable1");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
-  }
-
-  // int32 variable2 = 2;
-  if (this->_internal_variable2() != 0) {
+  // int32 ue_index = 1;
+  if (this->_internal_ue_index() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(
-        2, this->_internal_variable2(), target);
+        1, this->_internal_ue_index(), target);
   }
 
-  // double variable3 = 3;
+  // double pkt_drop = 2;
   static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_variable3 = this->_internal_variable3();
-  ::uint64_t raw_variable3;
-  memcpy(&raw_variable3, &tmp_variable3, sizeof(tmp_variable3));
-  if (raw_variable3 != 0) {
+  double tmp_pkt_drop = this->_internal_pkt_drop();
+  ::uint64_t raw_pkt_drop;
+  memcpy(&raw_pkt_drop, &tmp_pkt_drop, sizeof(tmp_pkt_drop));
+  if (raw_pkt_drop != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-        3, this->_internal_variable3(), target);
+        2, this->_internal_pkt_drop(), target);
+  }
+
+  // int32 pkt_volume = 3;
+  if (this->_internal_pkt_volume() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+        3, this->_internal_pkt_volume(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -452,25 +422,25 @@ failure:
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string variable1 = 1;
-  if (!this->_internal_variable1().empty()) {
-    total_size += 1 + ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-                                    this->_internal_variable1());
-  }
-
-  // double variable3 = 3;
+  // double pkt_drop = 2;
   static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_variable3 = this->_internal_variable3();
-  ::uint64_t raw_variable3;
-  memcpy(&raw_variable3, &tmp_variable3, sizeof(tmp_variable3));
-  if (raw_variable3 != 0) {
+  double tmp_pkt_drop = this->_internal_pkt_drop();
+  ::uint64_t raw_pkt_drop;
+  memcpy(&raw_pkt_drop, &tmp_pkt_drop, sizeof(tmp_pkt_drop));
+  if (raw_pkt_drop != 0) {
     total_size += 9;
   }
 
-  // int32 variable2 = 2;
-  if (this->_internal_variable2() != 0) {
+  // int32 ue_index = 1;
+  if (this->_internal_ue_index() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_variable2());
+        this->_internal_ue_index());
+  }
+
+  // int32 pkt_volume = 3;
+  if (this->_internal_pkt_volume() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_pkt_volume());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -491,18 +461,18 @@ void StreamResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const :
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_variable1().empty()) {
-    _this->_internal_set_variable1(from._internal_variable1());
-  }
   static_assert(sizeof(::uint64_t) == sizeof(double), "Code assumes ::uint64_t and double are the same size.");
-  double tmp_variable3 = from._internal_variable3();
-  ::uint64_t raw_variable3;
-  memcpy(&raw_variable3, &tmp_variable3, sizeof(tmp_variable3));
-  if (raw_variable3 != 0) {
-    _this->_internal_set_variable3(from._internal_variable3());
+  double tmp_pkt_drop = from._internal_pkt_drop();
+  ::uint64_t raw_pkt_drop;
+  memcpy(&raw_pkt_drop, &tmp_pkt_drop, sizeof(tmp_pkt_drop));
+  if (raw_pkt_drop != 0) {
+    _this->_internal_set_pkt_drop(from._internal_pkt_drop());
   }
-  if (from._internal_variable2() != 0) {
-    _this->_internal_set_variable2(from._internal_variable2());
+  if (from._internal_ue_index() != 0) {
+    _this->_internal_set_ue_index(from._internal_ue_index());
+  }
+  if (from._internal_pkt_volume() != 0) {
+    _this->_internal_set_pkt_volume(from._internal_pkt_volume());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -520,17 +490,13 @@ bool StreamResponse::IsInitialized() const {
 
 void StreamResponse::InternalSwap(StreamResponse* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.variable1_, lhs_arena,
-                                       &other->_impl_.variable1_, rhs_arena);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(StreamResponse, _impl_.variable2_)
-      + sizeof(StreamResponse::_impl_.variable2_)
-      - PROTOBUF_FIELD_OFFSET(StreamResponse, _impl_.variable3_)>(
-          reinterpret_cast<char*>(&_impl_.variable3_),
-          reinterpret_cast<char*>(&other->_impl_.variable3_));
+      PROTOBUF_FIELD_OFFSET(StreamResponse, _impl_.pkt_volume_)
+      + sizeof(StreamResponse::_impl_.pkt_volume_)
+      - PROTOBUF_FIELD_OFFSET(StreamResponse, _impl_.pkt_drop_)>(
+          reinterpret_cast<char*>(&_impl_.pkt_drop_),
+          reinterpret_cast<char*>(&other->_impl_.pkt_drop_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamResponse::GetMetadata() const {

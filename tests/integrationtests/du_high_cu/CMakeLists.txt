@@ -34,4 +34,5 @@ target_link_libraries(cu_du_test srsran_cu_cp
         gtest
         gtest_main)
 target_include_directories(cu_du_test PRIVATE ${CMAKE_SOURCE_DIR})
+
 gtest_discover_tests(cu_du_test)

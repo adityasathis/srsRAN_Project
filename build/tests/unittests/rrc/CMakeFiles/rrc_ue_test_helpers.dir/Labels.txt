@@ -1,4 +1,0 @@
-# Directory labels
- rrc
-# Source files and their labels
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/rrc/rrc_ue_test_messages.cpp

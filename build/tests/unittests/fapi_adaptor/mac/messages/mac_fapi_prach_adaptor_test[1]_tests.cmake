@@ -1,3 +1,0 @@
-add_test( ULPRACHPDUTest.ValidPRACHShouldPass /home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi_adaptor/mac/messages/mac_fapi_prach_adaptor_test [==[--gtest_filter=ULPRACHPDUTest.ValidPRACHShouldPass]==] --gtest_also_run_disabled_tests)
-set_tests_properties( ULPRACHPDUTest.ValidPRACHShouldPass PROPERTIES WORKING_DIRECTORY /home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi_adaptor/mac/messages SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set( mac_fapi_prach_adaptor_test_TESTS ULPRACHPDUTest.ValidPRACHShouldPass)

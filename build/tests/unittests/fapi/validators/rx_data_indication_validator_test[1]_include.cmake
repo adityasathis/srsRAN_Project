@@ -1,5 +1,0 @@
-if(EXISTS "/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi/validators/rx_data_indication_validator_test[1]_tests.cmake")
-  include("/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/build/tests/unittests/fapi/validators/rx_data_indication_validator_test[1]_tests.cmake")
-else()
-  add_test(rx_data_indication_validator_test_NOT_BUILT rx_data_indication_validator_test_NOT_BUILT)
-endif()

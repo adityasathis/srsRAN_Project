@@ -1,4 +1,0 @@
-# Directory labels
- fapi
-# Source files and their labels
-/home/adityasathis/Sources/radio_protocol_stacks/srsran/srsran_5g_oscric/tests/unittests/fapi/builders/rx_data_indication_test.cpp

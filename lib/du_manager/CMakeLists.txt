@@ -26,7 +26,9 @@ add_subdirectory(procedures)
 set(SOURCES du_manager_factory.cpp
             du_manager_impl.cpp
             du_ue/du_ue_manager.cpp
-            du_cell_manager.cpp)
+            du_cell_manager.cpp
+            ../grpc/e2_and_o1.grpc.pb.cc
+            ../grpc/e2_and_o1.pb.cc)
 
 add_library(srsran_du_manager STATIC ${SOURCES})
 target_link_libraries(srsran_du_manager
@@ -38,3 +40,15 @@ target_link_libraries(srsran_du_manager
                       mac_configuration_helpers
                       srsran_rlc
                       srsran_gtpu)
+
+# Find gRPC
+find_package(gRPC REQUIRED)
+if (gRPC_FOUND)
+    message(STATUS "Found gRPC")
+    include_directories(../grpc)
+    
+    # Link gRPC libraries to your target
+    target_link_libraries(srsran_du_manager gRPC::grpc++)
+else(gRPC_FOUND)
+    message(FATAL_ERROR "Could not find gRPC")
+endif(gRPC_FOUND)
