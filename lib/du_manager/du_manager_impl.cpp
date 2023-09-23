@@ -86,8 +86,8 @@ void du_manager_impl::start()
   fut.wait();
 
   // Enable protobuf for the server which will be the makeshift E2 and O1 interfaces
-  this->setup_server();
-  this->initialize_rlc_metrics();
+  setup_server();
+  initialize_rlc_metrics();
 
   logger.info("DU manager started successfully.");
 }

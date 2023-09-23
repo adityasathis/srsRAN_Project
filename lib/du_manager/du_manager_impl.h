@@ -275,7 +275,6 @@ private:
   du_cell_manager              cell_mng;
   du_ran_resource_manager_impl cell_res_alloc;
   du_ue_manager                ue_mng;
-
   std::mutex mutex;
   bool       running{false};
 

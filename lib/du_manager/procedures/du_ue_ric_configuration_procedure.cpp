@@ -31,6 +31,7 @@ du_ue_ric_configuration_procedure::du_ue_ric_configuration_procedure(const ric_c
                                                                      const du_manager_params&  du_params_) :
   request(request_), ue_mng(ue_mng_), du_params(du_params_)
 {
+  dispatch_ue_config_task();
 }
 
 void du_ue_ric_configuration_procedure::operator()(coro_context<async_task<ric_control_config_response>>& ctx)
