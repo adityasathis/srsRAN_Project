@@ -245,7 +245,7 @@ public:
                 config.min_prb_alloc = 1;
                 config.max_prb_alloc = maxPrb;
 
-                this->configure_ue_mac_scheduler(config);
+                configure_ue_mac_scheduler(config);
                 
                 // No response necessary
               }
@@ -269,6 +269,7 @@ private:
   du_manager_params     params;
   du_manager_metrics    metrics_handler;
   srslog::basic_logger& logger;
+  //du_ue_ric_configuration_procedure config_update;
 
   // Components
   du_cell_manager              cell_mng;
