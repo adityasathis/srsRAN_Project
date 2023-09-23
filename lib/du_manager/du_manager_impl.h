@@ -54,12 +54,18 @@ class du_manager_metrics final : public rlc_metrics_notifier
 public:
   void report_metrics(const rlc_metrics& metrics) override {
     // In this function, we will update the RLC metrics in the metrics database.
+    for (size_t i = 0; i < metrics_vector.size(); i++) {
+      if (metrics_vector[i].ue_index == metrics.ue_index) {
+        metrics_vector[i] = metrics;
+        return;
+      }
+    }
     metrics_vector.push_back(metrics);
   }
 
-      int get_total_ue_count() {
-        return metrics_vector.size();
-    }
+  int get_total_ue_count() {
+    return metrics_vector.size();
+  }
 
   rlc_metrics get_metrics(uint32_t ue_index) {
         // Check if the UE ID is within a valid range.
@@ -237,7 +243,7 @@ public:
               std::string serialized_message;
               service_message.SerializeToString(&serialized_message);
 
-              send(clientSocket, serialized_message.c_str(), serialized_message.length(), 0);   
+              send(clientSocket, serialized_message.c_str(), serialized_message.size(), 0);   
           } else if (messageType == 1) {
               for (const auto& ueMaxPrbAllocation : service_message.ue_max_prb_allocations()) {
                 int32_t ueIndex = ueMaxPrbAllocation.ue_index();
