@@ -53,6 +53,9 @@ void du_ue_ric_configuration_procedure::operator()(coro_context<async_task<ric_c
 manual_event<ric_control_config_response>& du_ue_ric_configuration_procedure::dispatch_ue_config_task()
 {
   // Find UE context based on F1AP UE ID.
+
+  std::cout << "Dispatching UE config task" << std::endl;
+
   ue = ue_mng.find_f1ap_ue_id(static_cast<gnb_du_ue_f1ap_id_t>(request.ue_id));
   if (ue == nullptr) {
     ric_control_config_response fail{false, false, false};
