@@ -217,7 +217,7 @@ public:
           rlc_metrics metrics = {};
           oran::service_message message;
 
-          if (messageType == 0) {
+          if (messageType == 4) {
               // Get the metrics
               std::cout << "Received message to sent KPI metrics for " << metrics_handler.get_total_ue_count() << "ues" << std::endl;
               message.set_type(3);
