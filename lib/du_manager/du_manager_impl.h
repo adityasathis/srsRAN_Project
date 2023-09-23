@@ -232,7 +232,7 @@ public:
 
                 // Calculate the two metrics that need to be sent
                 double pkt_drop_rate = ((1.0) * (metrics.tx.num_dropped_sdus + metrics.tx.num_discarded_sdus))/metrics.tx.num_sdus;
-                double pkt_volume = (metrics.tx.num_sdus * 8)/1000;
+                double pkt_volume = (metrics.tx.num_sdus * 8 * 1.0)/1000;
 
                 oran::kpm_per_ue* kpm_message = message.add_ue_kpb_metrics();
                 kpm_message->set_ue_index(metrics.ue_index);
