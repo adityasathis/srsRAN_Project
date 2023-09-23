@@ -215,6 +215,7 @@ public:
 
           if (messageType == 0) {
               // Get the metrics
+              std::cout << "Received message to sent KPI metrics for " << metrics_handler.get_total_ue_count() << "ues" << std::endl;
               message.set_type(3);
               for (int ue_id = 0; ue_id < metrics_handler.get_total_ue_count(); ++ue_id) {
                 metrics = metrics_handler.get_metrics(ue_id);
@@ -231,6 +232,7 @@ public:
 
               std::string serialized_message;
               service_message.SerializeToString(&serialized_message);
+
               send(clientSocket, serialized_message.c_str(), serialized_message.length(), 0);   
           } else if (messageType == 1) {
               for (const auto& ueMaxPrbAllocation : service_message.ue_max_prb_allocations()) {
