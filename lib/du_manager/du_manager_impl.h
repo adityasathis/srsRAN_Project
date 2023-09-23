@@ -196,10 +196,14 @@ public:
             break;
           }
 
+          std::cout << "Find out something here" << std::endl;
+
           int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
           if (bytesRead <= 0) {
               continue;
           }
+
+          std::cout << "Find out something here (2)" << std::endl;
   
           // Deserialize the received data using protobuf
           oran::service_message service_message; // Use the message type defined in the updated .proto file
