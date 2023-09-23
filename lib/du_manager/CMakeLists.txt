@@ -48,6 +48,6 @@ if (Protobuf_FOUND)
     
     # Link gRPC libraries to your target
     target_link_libraries(srsran_du_manager ${PROTOBUF_LIBRARIES})
-else(gRPC_FOUND)
+else(Protobuf_FOUND)
     message(FATAL_ERROR "Could not find gRPC")
-endif(gRPC_FOUND)
+endif(Protobuf_FOUND)

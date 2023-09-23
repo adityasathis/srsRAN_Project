@@ -31,6 +31,7 @@
 #include <string>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <unistd.h>
 #include "../grpc/e2_and_o1.pb.h"
 
@@ -119,12 +120,18 @@ public:
   }
 
   void stop_server() {
-      if (server_thread_.joinable()) {
-          // Close the server socket to stop listening for incoming connections
-          close(serverSocket);
-          // Wait for the server thread to finish (gracefully terminate)
-          server_thread_.join();
-      }
+    // Close all client sockets to stop data transmission
+    for (int clientSocket : clientSockets) {
+      close(clientSocket);
+    }
+
+    if (server_thread_.joinable()) {
+      // Close the server socket to stop listening for incoming connections
+      close(serverSocket);
+
+      // Wait for the server thread to finish (gracefully terminate)
+      server_thread_.join();
+    }
   }
 
   // Method to handle incoming connections
@@ -165,8 +172,17 @@ public:
               std::cerr << "Error accepting connection." << std::endl;
               continue; // Continue listening for other connections
           }
+
+    // Print the client's IP address
+    char clientIP[INET_ADDRSTRLEN];
+    if (inet_ntop(AF_INET, &(clientAddress.sin_addr), clientIP, INET_ADDRSTRLEN) != nullptr) {
+      std::cout << "Accepted connection from IP: " << clientIP << std::endl;
+    } else {
+      std::cerr << "Error converting client IP address." << std::endl;
+    }
          // Handle the client connection (e.g., create a new thread to handle it)
-          std::thread(&du_manager_impl::listen_for_client, this, clientSocket).detach();
+        clientSockets.push_back(clientSocket);  // Store client socket
+        std::thread(&du_manager_impl::listen_for_client, this, clientSocket).detach();
       }
      // Note: This loop will continue running until you stop the server.
       // You should add a way to gracefully shut down the server.
@@ -175,9 +191,14 @@ public:
   void listen_for_client(int clientSocket) {
       char buffer[1024];
       while (true) {
+          if (std::find(clientSockets.begin(), clientSockets.end(), clientSocket) == clientSockets.end()) {
+            std::cerr << "Client is not open anymore. Exiting thread." << std::endl;
+            break;
+          }
+
           int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
           if (bytesRead <= 0) {
-              break;
+              continue;
           }
   
           // Deserialize the received data using protobuf
@@ -244,6 +265,7 @@ private:
   // DU manager configuration that will be visible to all running procedures
   std::thread server_thread_;
   int serverSocket;
+  std::vector<int> clientSockets;
   du_manager_params     params;
   du_manager_metrics    metrics_handler;
   srslog::basic_logger& logger;
