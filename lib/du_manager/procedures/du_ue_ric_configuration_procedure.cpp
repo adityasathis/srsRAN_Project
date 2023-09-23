@@ -37,6 +37,8 @@ void du_ue_ric_configuration_procedure::operator()(coro_context<async_task<ric_c
 {
   CORO_BEGIN(ctx);
 
+  std::cout << "Starting the UE configuration task" << std::endl;
+
   // Change execution context to DU manager.
   execute_on(du_params.services.du_mng_exec);
 
