@@ -241,7 +241,7 @@ public:
               }
 
               std::string serialized_message;
-              service_message.SerializeToString(&serialized_message);
+              message.SerializeToString(&serialized_message);
 
               send(clientSocket, serialized_message.c_str(), serialized_message.size(), 0);   
           } else if (messageType == 1) {
