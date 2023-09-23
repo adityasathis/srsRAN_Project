@@ -202,20 +202,20 @@ public:
           }
   
           // Deserialize the received data using protobuf
-          oran::service_message rc_per_ue; // Use the message type defined in the updated .proto file
-          if (!rc_per_ue.ParseFromArray(buffer, bytesRead)) {
-              std::cerr << "Error parsing protobuf message." << std::endl;
+          oran::service_message service_message; // Use the message type defined in the updated .proto file
+          if (!service_message.ParseFromArray(buffer, bytesRead)) {
+              std::cerr << "Error parsing protobuf message %d" << bytesRead << std::endl;
               break;
           }
   
-          int32_t messageType = rc_per_ue.type();
+          int32_t messageType = service_message.type();
           
           rlc_metrics metrics = {};
-          oran::service_message service_message;
+          oran::service_message message;
 
           if (messageType == 0) {
               // Get the metrics
-              service_message.set_type(3);
+              message.set_type(3);
               for (int ue_id = 0; ue_id < metrics_handler.get_total_ue_count(); ++ue_id) {
                 metrics = metrics_handler.get_metrics(ue_id);
 
@@ -223,7 +223,7 @@ public:
                 double pkt_drop_rate = ((1.0) * (metrics.tx.num_dropped_sdus + metrics.tx.num_discarded_sdus))/metrics.tx.num_sdus;
                 double pkt_volume = (metrics.tx.num_sdus * 8)/1000;
 
-                oran::kpm_per_ue* kpm_message = service_message.add_ue_kpb_metrics();
+                oran::kpm_per_ue* kpm_message = message.add_ue_kpb_metrics();
                 kpm_message->set_ue_index(metrics.ue_index);
                 kpm_message->set_pkt_drop_rate(pkt_drop_rate);
                 kpm_message->set_pkt_volume(pkt_volume);
@@ -233,7 +233,7 @@ public:
               service_message.SerializeToString(&serialized_message);
               send(clientSocket, serialized_message.c_str(), serialized_message.length(), 0);   
           } else if (messageType == 1) {
-              for (const auto& ueMaxPrbAllocation : rc_per_ue.ue_max_prb_allocations()) {
+              for (const auto& ueMaxPrbAllocation : service_message.ue_max_prb_allocations()) {
                 int32_t ueIndex = ueMaxPrbAllocation.ue_index();
                 int32_t maxPrb = ueMaxPrbAllocation.max_prb();
   

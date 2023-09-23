@@ -19,7 +19,7 @@
  * and at http://www.gnu.org/licenses/.
  *
  */
-
+#include <iostream>
 #include "du_ue_ric_configuration_procedure.h"
 #include "srsran/support/async/execute_on.h"
 
@@ -86,6 +86,8 @@ async_task<mac_ue_reconfiguration_response> du_ue_ric_configuration_procedure::h
   // Configure UE resource allocation parameters.
   mac_request.sched_cfg.res_alloc_cfg.emplace();
   auto& res_alloc_cfg = mac_request.sched_cfg.res_alloc_cfg.value();
+
+  std::cout << "Passing information: min: %d, max: %d" << request.min_prb_alloc.value() << request.max_prb_alloc.value() << std::endl;
 
   res_alloc_cfg.pdsch_grant_size_limits = {request.min_prb_alloc.has_value() ? request.min_prb_alloc.value() : 0,
                                            request.max_prb_alloc.has_value() ? request.max_prb_alloc.value()
