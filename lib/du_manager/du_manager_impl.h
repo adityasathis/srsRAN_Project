@@ -258,9 +258,27 @@ public:
                 config.max_prb_alloc = maxPrb;
 
                 configure_ue_mac_scheduler(config);
-                
                 // No response necessary
               }
+
+              message.set_type(3);
+              for (int ue_id = 0; ue_id < metrics_handler.get_total_ue_count(); ++ue_id) {
+                metrics = metrics_handler.get_metrics(ue_id);
+
+                // Calculate the two metrics that need to be sent
+                double pkt_drop_rate = ((1.0) * (metrics.tx.num_dropped_sdus + metrics.tx.num_discarded_sdus))/metrics.tx.num_sdus;
+                double pkt_volume = (metrics.tx.num_sdus * 8 * 1.0)/1000;
+
+                oran::kpm_per_ue* kpm_message = message.add_ue_kpb_metrics();
+                kpm_message->set_ue_index(metrics.ue_index);
+                kpm_message->set_pkt_drop_rate(pkt_drop_rate);
+                kpm_message->set_pkt_volume(pkt_volume);
+              }
+
+              std::string serialized_message;
+              message.SerializeToString(&serialized_message);
+
+              send(clientSocket, serialized_message.c_str(), serialized_message.size(), 0);
           } else {
             std::cerr << "Received an unexpected message type: " << messageType << std::endl;
           }
